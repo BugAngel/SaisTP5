@@ -14,13 +14,13 @@ class Index extends Controller
 //    return "hello world";
 // 插入记录
         Db::name('user')
-            ->insert(['username' => 'SuMing', 'password' => md5('123456'),'group'=>'admin']);
+            ->insert(['account' => 'SuMing', 'password' => md5('123456'),'group'=>'admin']);
 
 // 更新记录
         try{
             Db::name('user')
                 ->where('group', 'admin')
-                ->update(['username' => 'YeFan']);
+                ->update(['account' => 'YeFan']);
         }catch (Exception $e){
             echo 'Message: ' .$e->getMessage();
         }

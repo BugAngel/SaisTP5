@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="/WFT/public/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/WFT/public/static/layer/layer.js"></script>
+</head>
+
+<body>
+
+        <h3>登录</h3>
+        <form id="form" name="form" method="post" action="{:url('checkLogin')}"  autocomplete="off">
+                <input name="account" type="text"  placeholder="账户"  autocomplete="off">
+                <input name="password" type="password" placeholder="密码" autocomplete="off">
+                <span>验证码</span>
+                <input name="code" style="width:110px" type="text" id="code" placeholder="验证码"/>
+                <a> <img class="reloadverify" src="{:url('captcha')}"  id="imgcode" onClick="this.src=this.src+'?'+Math.random()" alt="captcha"></a>
+            <button type="submit">登 录</button>
+        </form>
+
+
+<!--ajax异步提交-->
+<script>
+    $('form').submit(function(){
+        var account  = $("input[name='account']").val();
+        var password  = $("input[name='password']").val();
+        var code = $("#code").val();
+        if(!account){
+            // layer.msg("<a style='color:red'>用户名不能为空！</a>,{time:2000}");
+            layer.msg('用户名不能为空！');
+        }
+        if(!password){
+            // layer.msg("<a style='color:red'>密码不能为空！</a>,{time:2000}");
+            layer.msg('密码不能为空！');
+        }
+        if(!code){
+            // layer.msg("<a style='color:red'>验证码不能为空！</a>,{time:2000}");
+            layer.msg('验证码不能为空！');
+        }
+        var url  = $(this).attr('action');
+        $.ajax({
+            type:"post",
+            url :url,
+            data:{account:account,password:password,code:code},
+            success: function(res){
+                if(res.status){
+                    layer.msg(res.message,{time:1000},function(){
+                        // window.location.href = "{:url('Index/index')}";
+                    });
+                }else{
+                    //刷新验证码
+                    $(".reloadverify").click();
+                    layer.msg(res.message,{time:2000});
+                }
+            }
+        });
+        return false;
+    });
+</script>
+</body>
+
+</html>

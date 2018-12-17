@@ -11,17 +11,19 @@
 
 return [
     // 数据库类型
-    'type'            => 'mysql',
+    'type'            => '\think\mongo\Connection',
     // 服务器地址
     'hostname'        => '127.0.0.1',
     // 数据库名
-    'database'        => '',
+    'database'        => 'wft',
     // 用户名
-    'username'        => 'root',
+    'username'        => '',
     // 密码
     'password'        => '',
     // 端口
-    'hostport'        => '',
+    'hostport'        => '27017',
+    // 强制把_id转换为id，与MySQL习惯保持一致
+    'pk_convert_id'  => true,
     // 连接dsn
     'dsn'             => '',
     // 数据库连接参数
@@ -29,7 +31,7 @@ return [
     // 数据库编码默认采用utf8
     'charset'         => 'utf8',
     // 数据库表前缀
-    'prefix'          => '',
+    'prefix'          => 'wft_',
     // 数据库调试模式
     'debug'           => true,
     // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
@@ -51,5 +53,13 @@ return [
     // 时间字段取出后的默认时间格式
     'datetime_format' => 'Y-m-d H:i:s',
     // 是否需要进行SQL性能分析
-    'sql_explain'     => false,
+    'sql_explain'     => true,
+    // Builder类
+    'builder'         => '',
+    // Query类 设置查询类
+    'query'           => '\think\mongo\Query',
+    // 是否需要断线重连
+    'break_reconnect' => false,
+    // 断线标识字符串
+    'break_match_str' => [],
 ];
