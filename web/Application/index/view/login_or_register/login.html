@@ -3,55 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
-    <script src="/WFT/public/static/js/jquery-3.3.1.min.js"></script>
-    <script src="/WFT/public/static/layer/layer.js"></script>
+    <script src="/WFT/web/public/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/WFT/web/public/static/layer/layer.js"></script>
 </head>
 
 <body>
+<form id="form" name="form" method="post" action="{:url('checkLogin')}" autocomplete="off">
+    <label for="account" style="color:blue">用户名</label>
+    <br>
+    <input id="account" name="account" type="text" placeholder="用户名" autocomplete="off">
+    <br>
+    <label for="password" style="color:blue">密码</label>
+    <br>
+    <input id="password" name="password" type="password" placeholder="密码" autocomplete="off">
+    <br>
+    <label for="code" style="color:blue">验证码</label>
+    <br>
+    <input id="code" name="code" style="width:110px" type="text" placeholder="验证码"/>
+    <br>
+    <a> <img class="reloadverify" src="{:url('captcha')}" id="imgcode" onClick="this.src=this.src+'?'+Math.random()"
+             alt="captcha"></a>
+    <br>
+    <input type="submit" style="color:blue" value="登录">
+</form>
 
-        <h3>登录</h3>
-        <form id="form" name="form" method="post" action="{:url('checkLogin')}"  autocomplete="off">
-                <input name="account" type="text"  placeholder="账户"  autocomplete="off">
-                <input name="password" type="password" placeholder="密码" autocomplete="off">
-                <span>验证码</span>
-                <input name="code" style="width:110px" type="text" id="code" placeholder="验证码"/>
-                <a> <img class="reloadverify" src="{:url('captcha')}"  id="imgcode" onClick="this.src=this.src+'?'+Math.random()" alt="captcha"></a>
-            <button type="submit">登 录</button>
-        </form>
-
+<br>
+<a href="{:url('register')}">还没有账号？注册一个吧！</a>
+<br>
 
 <!--ajax异步提交-->
 <script>
-    $('form').submit(function(){
-        var account  = $("input[name='account']").val();
-        var password  = $("input[name='password']").val();
-        var code = $("#code").val();
-        if(!account){
-            // layer.msg("<a style='color:red'>用户名不能为空！</a>,{time:2000}");
+    //检验用户名格式
+    function checkname() {
+        var name1 = document.form.account.value;
+        if (name1 == "") {
             layer.msg('用户名不能为空！');
+            return false;
         }
-        if(!password){
-            // layer.msg("<a style='color:red'>密码不能为空！</a>,{time:2000}");
-            layer.msg('密码不能为空！');
+        if (name1.length < 6 || name1.length > 14) {
+            layer.msg('用户名格式错误！');
+            return false;
         }
-        if(!code){
-            // layer.msg("<a style='color:red'>验证码不能为空！</a>,{time:2000}");
+        var charname1 = name1.toLowerCase();
+        for (var i = 0; i < name1.length; i++) {
+            var charname = charname1.charAt(i);
+            if (!(charname >= 0 && charname <= 9) && (!(charname >= 'a' && charname <= 'z')) && (charname != '_')) {
+                layer.msg('用户名包含非法字符！');
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //检查密码格式
+    function checkpassword() {
+        var div = document.getElementById("pwdspan");
+        div.innerHTML = "";
+        var password = document.form.password.value;
+        if (password == "") {
+            layer.msg("密码不能为空");
+            return false;
+        }
+        if (password.length < 4 || password.length > 16) {
+            layer.msg("格式错误，密码长度为4-16位");
+            return false;
+        }
+        return true;
+    }
+
+    $('form').submit(function () {
+        var account = $("input[name='account']").val();
+        var password = $("input[name='password']").val();
+        var code = $("#code").val();
+        if (!checkname()) {
+            return  false;
+        }
+        if (!checkpassword()) {
+            return false;
+        }
+
+        if (!code) {
             layer.msg('验证码不能为空！');
+            return false;
         }
-        var url  = $(this).attr('action');
+        var url = $(this).attr('action');
+        var formData = $("#form").serialize();
         $.ajax({
-            type:"post",
-            url :url,
-            data:{account:account,password:password,code:code},
-            success: function(res){
-                if(res.status){
-                    layer.msg(res.message,{time:1000},function(){
-                        // window.location.href = "{:url('Index/index')}";
+            type: "post",
+            url: url,
+            dataType: "json",
+            data: formData,
+            success: function (res) {
+                if (res.status) {
+                    layer.msg(res.message, {time: 1000}, function () {
+                        window.location.href = "{:url('Index/index')}";
                     });
-                }else{
+                } else {
                     //刷新验证码
                     $(".reloadverify").click();
-                    layer.msg(res.message,{time:2000});
+                    layer.msg(res.message);
                 }
             }
         });

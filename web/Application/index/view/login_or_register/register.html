@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script src="/WFT/web/public/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/WFT/web/public/static/layer/layer.js"></script>
+</head>
+<body>
+<form id="form" name="form" method="post" action="{:url('checkRegister')}" autocomplete="off">
+    <span style="color: red">以下为必填信息</span>
+    <br>
+    <span style="color: blue">用户名</span>
+    <input type="text" id="name" name="name" required="required" onclick="checkname()" placeholder="用户名（6-14位）"/>
+    <span id="namespan" style="color: red"></span>
+    <br/>
+    <span style="color: blue">密码</span>
+    <input type="password" id="pwd" name="pwd" required="required"  onclick="checkpassword()" placeholder="密码（4-16位）"/>
+    <span id="pwdspan" style="color: red"></span>
+    <br/>
+    <span style="color: blue">确认密码</span>
+    <input type="password" id="repwd" name="repwd" required="required" onclick="same()" placeholder="确认密码"/>
+    <span id="repwdspan" style="color: red"></span>
+    <br/>
+    <span style="color: blue">验证码</span>
+    <input id="code" name="code" style="width:110px" type="text" required="required" placeholder="验证码"/>
+    <br>
+    <a> <img class="reloadverify" src="{:url('captcha')}" id="imgcode" onClick="this.src=this.src+'?'+Math.random()"
+             alt="captcha"></a>
+    <br>
+
+    <br>
+    <span style="color: blue">以下为选填信息，当然，您可以随时在用户设置页面更改它们</span>
+    <br>
+    <span style="color: blue">邮箱</span>
+    <input type="email" id="email" name="email"  onclick="checkemail()" placeholder="邮箱"/>
+    <span id="emailspan" style="color: red"></span>
+    <br/>
+    <span style="color: blue">身份证号</span>
+    <input type="text" name="number" id="number" onclick="checkNum()" placeholder="身份证号"/>
+    <span id="idspan" style="color: red"></span>
+    <br/>
+    <span style="color: blue">出生日期</span>
+    <input name="sDate" type="text" id="sDate" onclick="checkdate()" placeholder="出生日期"/>
+    <span id="datespan" style="color: red"></span>
+    <br>
+
+    <br>
+    你对哪些地区感兴趣？<br>
+    <p><input type="checkbox" name="category" value="美国" />美国 </p>
+    <p><input type="checkbox" name="category" value="加拿大" />加拿大</p>
+    <p><input type="checkbox" name="category" value="澳大利亚" />澳大利亚</p>
+    <p><input type="checkbox" name="category" value="英国" />英国</p>
+    <p><input type="checkbox" name="category" value="法国" />法国</p>
+    <p><input type="checkbox" name="category" value="德国" />德国</p>
+
+    <br/>
+
+    <input type="submit" value="提交"/>
+</form>
+
+
+<script>
+    //检验用户名格式
+    function checkname() {
+        var name1 = document.form.name.value;
+        if (name1 == "") {
+            document.getElementById("namespan").innerHTML = "用户名不能为空！";
+            return false;
+        }
+        if (name1.length < 6 || name1.length > 14) {
+            document.getElementById("namespan").innerHTML = "格式错误，长度6-14个字符";
+            return false;
+        }
+        var charname1 = name1.toLowerCase();
+        for (var i = 0; i < name1.length; i++) {
+            var charname = charname1.charAt(i);
+            if (!(charname >= 0 && charname <= 9) && (!(charname >= 'a' && charname <= 'z')) && (charname != '_')) {
+                document.getElementById("namespan").innerHTML = "用户名包含非法字符";
+                return false;
+            }
+        }
+        document.getElementById("namespan").innerHTML = "用户名正确";
+        return true;
+    }
+
+    //检查密码格式
+    function checkpassword() {
+        var div = document.getElementById("pwdspan");
+        div.innerHTML = "";
+        var password = document.form.pwd.value;
+        if (password == "") {
+            div.innerHTML = "密码不能为空";
+            return false;
+        }
+        if (password.length < 4 || password.length > 16) {
+            div.innerHTML = "格式错误，密码长度为4-16位";
+            return false;
+        }
+        div.innerHTML = "密码格式正确";
+        return true;
+    }
+
+    //检查密码是否一样
+    function same() {
+        var d = document.getElementById("repwdspan");
+        d.innerHTML = "";
+        var pValue = document.getElementById("pwd").value;
+        if (pValue == "") {
+            //注意空的表示方法
+            d.innerHTML = "密码不能为空";
+            return false;
+        }
+        /** 校验确认密码*/
+        var rpValue = document.getElementById("repwd").value;
+        if (rpValue != pValue) {
+            d.innerHTML = "两次密码输入不一致";
+            return false;
+        }
+        d.innerHTML = "输入一致";
+        return true;
+
+    }
+
+    //检验邮箱
+    function checkemail() {
+        var d = document.getElementById("emailspan");
+        d.innerHTML = "";
+        var eValue = document.getElementById("email").value;
+        if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(eValue)) {
+            d.innerHTML = "邮箱格式错误！";
+            return false;
+        } else
+        {
+            d.innerHTML = "邮箱格式正确"
+            return true;
+        }
+    }
+
+    // 检验身份证号格式
+    function checkeNO(NO) {
+        var str = NO;
+        //在JavaScript中，正则表达式只能使用"/"开头和结束，不能使用双引号
+        var Expression = /^\d{17}[\d|X]$|^\d{15}$/;
+        var objExp = new RegExp(Expression);
+        if (objExp.test(str) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function checkNum() {
+        var d = document.getElementById("idspan");
+        d.innerHTML = "";
+        var value=document.getElementById("number").value;
+        if (value == "") {
+            d.innerHTML = "请输入身份证号码!";
+            return false;
+        }
+        if (!checkeNO(value)) {
+            d.innerHTML = "身份证号码格式错误!!";
+            return false;
+        }
+        if (checkeNO(value)) {
+            d.innerHTML = "身份证号码格式正确!!";
+            return true;
+        }
+    }
+
+    //判断输入的日期是否正确
+    function CheckDate(INDate) {
+        if (INDate == "") {
+            return true;
+        }
+        if (INDate.indexOf('-', 0) != -1) {
+            separate = "-"
+        } else {
+            if (INDate.indexOf('/', 0) != -1) {
+                separate = "/"
+            } else {
+                return true;
+            }
+        }
+        area = INDate.indexOf(separate, 0)
+        //获取年份
+        subYY = INDate.substr(0, area)
+        if (isNaN(subYY) || subYY <= 0) {
+            return true;
+        }
+        //转换月份
+        subMM = INDate.substr(area + 1, INDate.indexOf(separate, area + 1) - (area + 1))
+        if (isNaN(subMM) || subMM <= 0) {
+            return true;
+        }
+        if (subMM.length < 2) {
+            subMM = "0" + subMM
+        }
+        //转换日
+        area = INDate.lastIndexOf(separate)
+        subDD = INDate.substr(area + 1, INDate.length - area - 1)
+        if (isNaN(subDD) || subDD <= 0) {
+            return true;
+        }
+        if (eval(subDD) < 10) {
+            subDD = "0" + eval(subDD)
+        }
+        NewDate = subYY + "-" + subMM + "-" + subDD
+        if (NewDate.length != 10) {
+            return true;
+        }
+        if (NewDate.substr(4, 1) != "-") {
+            return true;
+        }
+        if (NewDate.substr(7, 1) != "-") {
+            return true;
+        }
+        var MM = NewDate.substr(5, 2);
+        var DD = NewDate.substr(8, 2);
+        if ((subYY % 4 == 0 && subYY % 100 != 0) || subYY % 400 == 0) { //判断是否为闰年
+            if (parseInt(MM) == 2) {
+                if (DD > 29) {
+                    return true;
+                }
+            }
+        } else {
+            if (parseInt(MM) == 2) {
+                if (DD > 28) {
+                    return true;
+                }
+            }
+        }
+        var mm = new Array(1, 3, 5, 7, 8, 10, 12); //判断每月中的最大天数
+        for (i = 0; i < mm.length; i++) {
+            if (parseInt(MM) == mm[i]) {
+                if (parseInt(DD) > 31) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        if (parseInt(DD) > 30) {
+            return true;
+        }
+        if (parseInt(MM) > 12) {
+            return true;
+        }
+        return false;
+    }
+
+    function checkdate() {
+        var d = document.getElementById("datespan");
+        d.innerHTML = "";
+        var value=document.getElementById("sDate").value;
+        if (value == "") {
+            d.innerHTML = "请输入日期";
+            return false;
+        }
+        if (CheckDate(value)) {
+            d.innerHTML = "您输入的日期不正确！\n 请注意日期格式（如：2007/07/17或2007-07-17）以及二月是否为闰年！";
+            return false;
+        }else{
+            d.innerHTML = "您输入的日期是正确的";
+            return true;
+        }
+    }
+
+    //ajax异步提交
+    $('form').submit(function () {
+        var name = $("input[name='name']").val();
+        var pwd = $("input[name='pwd']").val();
+        var code = $("#code").val();
+
+        var email = $("input[name='email']").val();
+        var number = $("input[name='number']").val();
+        var sdate = $("input[name='sDate']").val();
+        var checkboxes = document.getElementsByName("category");
+        var items= new Array();
+        items[0]=checkboxes[0].checked;
+        items[1]=checkboxes[1].checked;
+        items[2]=checkboxes[2].checked;
+        items[3]=checkboxes[3].checked;
+        items[4]=checkboxes[4].checked;
+        items[5]=checkboxes[5].checked;
+        if (!checkname()) {
+            layer.msg('用户名格式不正确！');
+            return false;
+        }
+        if (!checkpassword()) {
+            layer.msg('密码格式不正确！');
+            return false;
+        }
+        if (!same()) {
+            layer.msg('两次密码输入不一致！');
+            return false;
+        }
+
+        var url = $(this).attr('action');
+        var json = [];
+        var j = {};
+        j.name = name;
+        j.pwd = pwd;
+        j.code = code;
+        if(checkemail()){
+            j.email=email;
+        }
+        if(checkNum()){
+            j.number=number;
+        }
+        if(checkdate()){
+            j.sdate=sdate;
+        }
+        j.item=items;
+        json.push(j);
+
+        var formData = JSON.stringify(json);
+
+        $.ajax({
+            type: "post",
+            url: url,
+            dataType: "json",
+            data: formData,
+            success: function (res) {
+                if (res.status) {
+                    layer.msg(res.message, {time: 1000}, function () {
+                        window.location.href = "{:url('Login')}";
+                    });
+                } else {
+                    //刷新验证码
+                    $(".reloadverify").click();
+                    layer.msg(res.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>
+
+
+</body>
+</html>
