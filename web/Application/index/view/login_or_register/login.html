@@ -34,20 +34,19 @@
 <!--ajax异步提交-->
 <script>
     //检验用户名格式
-    function checkname() {
-        var name1 = document.form.account.value;
-        if (name1 == "") {
+    function checkname(name1) {
+        if (name1 === "") {
             layer.msg('用户名不能为空！');
             return false;
         }
-        if (name1.length < 6 || name1.length > 14) {
+        if (name1.length < 5 || name1.length > 14) {
             layer.msg('用户名格式错误！');
             return false;
         }
         var charname1 = name1.toLowerCase();
         for (var i = 0; i < name1.length; i++) {
             var charname = charname1.charAt(i);
-            if (!(charname >= 0 && charname <= 9) && (!(charname >= 'a' && charname <= 'z')) && (charname != '_')) {
+            if (!(charname >= 0 && charname <= 9) && (!(charname >= 'a' && charname <= 'z')) && (charname !== '_')) {
                 layer.msg('用户名包含非法字符！');
                 return false;
             }
@@ -56,11 +55,8 @@
     }
 
     //检查密码格式
-    function checkpassword() {
-        var div = document.getElementById("pwdspan");
-        div.innerHTML = "";
-        var password = document.form.password.value;
-        if (password == "") {
+    function checkpassword(password) {
+        if (password === "") {
             layer.msg("密码不能为空");
             return false;
         }
@@ -75,13 +71,15 @@
         var account = $("input[name='account']").val();
         var password = $("input[name='password']").val();
         var code = $("#code").val();
-        if (!checkname()) {
-            return  false;
-        }
-        if (!checkpassword()) {
+
+        if(!checkname(account))
+        {
             return false;
         }
-
+        if(!checkpassword(password))
+        {
+            return false;
+        }
         if (!code) {
             layer.msg('验证码不能为空！');
             return false;

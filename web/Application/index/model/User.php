@@ -9,9 +9,8 @@ namespace app\index\model;
 
 class User
 {
-    private $username;  //用户名
+    private $account;  //用户名
     private $password;//密码
-    private $id; //身份证号
     private $email; //邮箱
     private $birthday; //出生日期
     private $country;//感兴趣国家及其权重
@@ -22,38 +21,24 @@ class User
      */
     public function setCountry($country)
     {
+        if($country==null)
+        {
+            return;
+        }
         $data=array();
-        if($country[0]){
-            $data["美国"]=1.0;
-        }
-        if($country[1]){
-            $data["加拿大"]=1.0;
-        }
-        if($country[2]){
-            $data["澳大利亚"]=1.0;
-        }
-        if($country[3]){
-            $data["英国"]=1.0;
-        }
-        if($country[4]){
-            $data["法国"]=1.0;
-        }
-        if($country[5]){
-            $data["德国"]=1.0;
+        foreach ($country as $value) {
+            $data[$value]=1.0;
         }
         $this->country = $data;
     }
 
     public function toArray(){
-        if($this->username==null || $this->password==null){
+        if($this->account==null || $this->password==null){
             return null;
         }
         $data=array();
-        $data["username"]=$this->username;
+        $data["account"]=$this->account;
         $data["password"]=$this->password;
-        if($this->id!=null){
-            $data["id"]=$this->id;
-        }
         if($this->email!=null){
             $data["email"]=$this->email;
         }
@@ -69,17 +54,17 @@ class User
     /**
      * @return mixed
      */
-    public function getUsername()
+    public function getAccount()
     {
-        return $this->username;
+        return $this->account;
     }
 
     /**
      * @param mixed $username
      */
-    public function setUsername($username)
+    public function setAccount($account)
     {
-        $this->username = $username;
+        $this->account = $account;
     }
 
     /**
@@ -96,22 +81,6 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
