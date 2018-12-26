@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>主界面</title>
+    <link href="/WFT/web/public/static/css/flexslider.css" rel="stylesheet" type="text/css"  />
+
+    <script src="/WFT/web/public/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/WFT/web/public/static/js/jquery.flexslider-min.js"></script>
 </head>
 <body>
+
 <label >登录</label>
 <a href="index.php/index/login_or_register/login">登录</a>
+
+<div class="flexslider">
+    <ul class="slides">
+        <li>
+            <img src="/WFT/web/public/static/image/slide1.png" />
+        </li>
+        <li>
+            <img src="/WFT/web/public/static/image/slide2.png" />
+        </li>
+        <li>
+            <img src="/WFT/web/public/static/image/slide3.png" />
+        </li>
+    </ul>
+</div>
+
+<script>
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            animationLoop: true,
+            itemWidth: 210,
+            itemMargin: 5,
+            minItems: 1,
+            maxItems: 1,
+            slideshowSpeed:3000,
+            move:1,
+            directionNav:true
+        });
+    });
+</script>
+
 </body>
 </html>

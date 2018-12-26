@@ -48,6 +48,9 @@ class User
         if($this->country!=null){
             $data["country"]=$this->country;
         }
+        if($this->loginip!=null){
+            $data["loginip"]=$this->loginip;
+        }
         return $data;
     }
 

@@ -1,18 +1,11 @@
 {
-	"_id" : ObjectId("5c174d1385ecbf33c80028a2"),
+	"_id" : ObjectId("5c2302b985ecbf48180078a2"),
 	"account" : "YeFan",
-	"group" : "admin",
-	"password" : "e10adc3949ba59abbe56e057f20f883e"
-},
-{
-	"_id" : ObjectId("5c17314585ecbf319c001c44"),
-	"account" : "YeFan",
-	"group" : "admin",
-	"password" : "e10adc3949ba59abbe56e057f20f883e"
-},
-{
-	"_id" : ObjectId("5c17310385ecbf319c001c43"),
-	"account" : "YeFan",
-	"group" : "admin",
+	"birthday" : "1990-03-08",
+	"country" : {
+		"Australia" : 1
+	},
+	"email" : "123456789@qq.com",
+	"loginip" : "::1",
 	"password" : "e10adc3949ba59abbe56e057f20f883e"
 },
