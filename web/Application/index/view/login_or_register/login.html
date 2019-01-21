@@ -3,33 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
-    <script src="/WFT/web/public/static/js/jquery-3.3.1.min.js"></script>
-    <script src="/WFT/web/public/static/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="__CSS__/semantic.css" />
+    <link rel="stylesheet" type="text/css" href="__CSS__/login.css" />
+    <script src="__JS__/jquery-3.3.1.min.js"></script>
+    <script src="__STATIC__/layer/layer.js"></script>
 </head>
 
 <body>
-<form id="form" name="form" method="post" action="{:url('checkLogin')}" autocomplete="off">
-    <label for="account" style="color:blue">用户名</label>
-    <br>
-    <input id="account" name="account" type="text" placeholder="用户名" autocomplete="off">
-    <br>
-    <label for="password" style="color:blue">密码</label>
-    <br>
-    <input id="password" name="password" type="password" placeholder="密码" autocomplete="off">
-    <br>
-    <label for="code" style="color:blue">验证码</label>
-    <br>
-    <input id="code" name="code" style="width:110px" type="text" placeholder="验证码"/>
-    <br>
-    <a> <img class="reloadverify" src="{:url('captcha')}" id="imgcode" onClick="this.src=this.src+'?'+Math.random()"
-             alt="captcha"></a>
-    <br>
-    <input type="submit" style="color:blue" value="登录">
-</form>
+<div class="header" title="登录">
+    <img src="__IMG__/login_logo.png">
+</div>
 
-<br>
-<a href="{:url('register')}">还没有账号？注册一个吧！</a>
-<br>
+<div class="main">
+    <div class="left">
+        <div class="login-bg">
+            <img src="__IMG__/login_banner.png">
+        </div>
+    </div>
+    <div class="content">
+        <!-- 用户输入区开始 -->
+        <div class="ui big form">
+            <div class="ui stacked segment blue">
+                <form id="form" name="form" method="post" action="{:url('checkLogin')}" autocomplete="off">
+                    <div class="field">
+                        <div class="ui icon input">
+                            <i class="user icon"></i>
+                            <input id="account" name="account" type="text" placeholder="用户名" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui icon input">
+                            <i class="lock icon"></i>
+                            <input id="password" name="password" type="password" placeholder="密码" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui icon input">
+                            <a> <img class="reloadverify" src="{:url('captcha')}" id="imgcode" onClick="this.src=this.src+'?'+Math.random()"
+                                     alt="captcha"></a>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui icon input">
+                            <input id="code" name="code" type="text" placeholder="验证码" autocomplete="off">
+                        </div>
+                    </div>
+                    <input type="submit" id="login" value="登录" class="ui fluid large teal submit  button" >
+                </form>
+            </div>
+            <div class="ui message">
+                新用户? <a href="{:url('register')}">注册</a>
+            </div>
+        </div>
+        <!-- 推荐输入区结束 -->
+
+        <!-- 推荐用户开始 -->
+        <div class="recommend">
+            <div class="ui horizontal divider">
+                <h4 class="ui teal">推荐学校</h4>
+            </div>
+            <div class="ui tiny images">
+                <img class="ui medium circular image" src="__IMG__/colleges/MIT.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Stanford.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Harvard.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Caltech.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Oxford.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Cambridge.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/ETH.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Imperial.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Chicago.png">
+            </div>
+        </div>
+        <!-- 推荐用户结束 -->
+    </div>
+</div>
+<div class="clear"></div>
+<div class="footer">
+    Copyright@BugAngel
+</div>
 
 <!--ajax异步提交-->
 <script>
