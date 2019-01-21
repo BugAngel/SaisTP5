@@ -39,7 +39,7 @@
                     </div>
                     <div class="field">
                         <div class="ui icon input">
-                            <a> <img class="reloadverify" src="{:url('captcha')}" id="imgcode" onClick="this.src=this.src+'?'+Math.random()"
+                            <a> <img class="reloadverify" src="{:url('captcha')}" id="imgcode" onClick="this.src=this.src+'?rand='+Math.random()"
                                      alt="captcha"></a>
                         </div>
                     </div>
@@ -85,34 +85,18 @@
 <!--ajax异步提交-->
 <script>
     //检验用户名格式
-    function checkname(name1) {
-        if (name1 === "") {
-            layer.msg('用户名不能为空！');
+    function checkname(name) {
+        if (name.length < 5 || name.length > 14) {
+            layer.msg('用户名格式错误');
             return false;
-        }
-        if (name1.length < 5 || name1.length > 14) {
-            layer.msg('用户名格式错误！');
-            return false;
-        }
-        var charname1 = name1.toLowerCase();
-        for (var i = 0; i < name1.length; i++) {
-            var charname = charname1.charAt(i);
-            if (!(charname >= 0 && charname <= 9) && (!(charname >= 'a' && charname <= 'z')) && (charname !== '_')) {
-                layer.msg('用户名包含非法字符！');
-                return false;
-            }
         }
         return true;
     }
 
     //检查密码格式
     function checkpassword(password) {
-        if (password === "") {
-            layer.msg("密码不能为空");
-            return false;
-        }
-        if (password.length < 4 || password.length > 16) {
-            layer.msg("格式错误，密码长度为4-16位");
+        if (password.length < 6 || password.length > 16) {
+            layer.msg("格式错误，密码长度为6-16位");
             return false;
         }
         return true;

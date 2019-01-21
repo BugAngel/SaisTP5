@@ -3,259 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
-    <script src="/WFT/web/public/static/js/jquery-3.3.1.min.js"></script>
-    <script src="/WFT/web/public/static/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="__CSS__/semantic.css" />
+    <link rel="stylesheet" type="text/css" href="__CSS__/login.css" />
+    <script src="__JS__/jquery-3.3.1.min.js"></script>
+    <script src="__STATIC__/layer/layer.js"></script>
 </head>
 <body>
-<form id="form" name="form" method="post" action="{:url('checkRegister')}" autocomplete="off">
-    <span style="color: red">以下为必填信息</span>
-    <br>
-    <span style="color: blue">用户名</span>
-    <input type="text" id="account" name="account" required="required" onclick="checkname()" placeholder="用户名（5-14位）"/>
-    <span id="namespan" style="color: red"></span>
-    <br/>
-    <span style="color: blue">密码</span>
-    <input type="password" id="password" name="password" required="required"  onclick="checkpassword()" placeholder="密码（4-16位）"/>
-    <span id="pwdspan" style="color: red"></span>
-    <br/>
-    <span style="color: blue">确认密码</span>
-    <input type="password" id="repwd" name="repwd" required="required" onclick="checkSame()" placeholder="确认密码"/>
-    <span id="repwdspan" style="color: red"></span>
-    <br/>
-    <span style="color: blue">验证码</span>
-    <input id="code" name="code" style="width:110px" type="text" required="required" onclick="checkSum()" placeholder="验证码"/>
-    <br>
-    <a> <img class="reloadverify" src="{:url('captcha')}" id="imgcode" onClick="this.src=this.src+'?'+Math.random()"
-             alt="captcha"></a>
-    <br>
+<div class="header" title="注册">
+    <img src="__IMG__/login_logo.png">
+</div>
 
-    <br>
-    <span style="color: blue">以下为选填信息，当然，您可以随时在用户设置页面更改它们</span>
-    <br>
-    <span style="color: blue">邮箱</span>
-    <input type="email" id="email" name="email"  onclick="checkemail()" placeholder="邮箱"/>
-    <span id="emailspan" style="color: red"></span>
-    <br/>
-    <span style="color: blue">出生日期</span>
-    <input name="sDate" type="text" id="sDate" onclick="checkdate()" placeholder="出生日期"/>
-    <span id="datespan" style="color: red"></span>
-    <br>
+<div class="main">
+    <div class="left">
+        <div class="login-bg">
+            <img src="__IMG__/login_banner.png">
+        </div>
+    </div>
+    <div class="content">
+        <!-- 用户输入区开始 -->
+        <div class="ui big form">
+            <div class="ui stacked segment blue">
+                <form id="form" name="form" method="post" action="{:url('checkRegister')}" autocomplete="off">
+                    <div class="field">
+                        <div class="ui icon input">
+                            <i class="user icon"></i>
+                            <input id="account" name="account" type="text" placeholder="用户名" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui icon input">
+                            <i class="lock icon"></i>
+                            <input id="password" name="password" type="password" placeholder="密码" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui icon input">
+                            <i class="lock icon"></i>
+                            <input id="repwd" name="repwd" type="password" placeholder="确认密码" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui icon input">
+                            <a> <img class="reloadverify" src="{:url('captcha')}" id="imgcode" onClick="this.src=this.src+'?rand='+Math.random()"
+                                     alt="captcha"></a>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui icon input">
+                            <input id="code" name="code" type="text" placeholder="验证码" autocomplete="off">
+                        </div>
+                    </div>
+                    <input type="submit" id="register" value="注册" class="ui fluid large teal submit  button" >
+                </form>
+            </div>
+            <div class="ui message">
+                已有账号，直接 <a href="{:url('login')}">登录</a>
+            </div>
+        </div>
+        <!-- 推荐输入区结束 -->
 
-    <br>
-    你对哪些地区感兴趣？<br>
-    <p><input type="checkbox" name="category" value="美国" />美国 </p>
-    <p><input type="checkbox" name="category" value="加拿大" />加拿大</p>
-    <p><input type="checkbox" name="category" value="澳大利亚" />澳大利亚</p>
-    <p><input type="checkbox" name="category" value="英国" />英国</p>
-    <p><input type="checkbox" name="category" value="法国" />法国</p>
-    <p><input type="checkbox" name="category" value="德国" />德国</p>
-
-    <br/>
-
-    <input type="submit" value="提交"/>
-</form>
+        <!-- 推荐用户开始 -->
+        <div class="recommend">
+            <div class="ui horizontal divider">
+                <h4 class="ui teal">推荐学校</h4>
+            </div>
+            <div class="ui tiny images">
+                <img class="ui medium circular image" src="__IMG__/colleges/MIT.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Stanford.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Harvard.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Caltech.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Oxford.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Cambridge.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/ETH.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Imperial.png">
+                <img class="ui medium circular image" src="__IMG__/colleges/Chicago.png">
+            </div>
+        </div>
+        <!-- 推荐用户结束 -->
+    </div>
+</div>
+<div class="clear"></div>
+<div class="footer">
+    Copyright@BugAngel
+</div>
 
 
 <script>
     //检验用户名格式
-    function checkname() {
-        var name1 = document.form.account.value;
-        if (name1 === "") {
-            document.getElementById("namespan").innerHTML = "用户名不能为空！";
+    function checkname(name) {
+        if (name.length < 5 || name.length > 14) {
+            layer.msg( "用户名长度应为5-14个字符");
             return false;
         }
-        if (name1.length < 5 || name1.length > 14) {
-            document.getElementById("namespan").innerHTML = "格式错误，长度6-14个字符";
-            return false;
-        }
-        var charname1 = name1.toLowerCase();
-        for (var i = 0; i < name1.length; i++) {
-            var charname = charname1.charAt(i);
-            if (!(charname >= 0 && charname <= 9) && (!(charname >= 'a' && charname <= 'z')) && (charname !== '_')) {
-                document.getElementById("namespan").innerHTML = "用户名包含非法字符";
-                return false;
-            }
-        }
-        document.getElementById("namespan").innerHTML = "用户名正确";
         return true;
     }
 
     //检查密码格式
-    function checkpassword() {
-        checkname(); //检查用户名
-        var div = document.getElementById("pwdspan");
-        div.innerHTML = "";
-        var password = document.form.password.value;
-        if (password === "") {
-            div.innerHTML = "密码不能为空";
+    function checkpassword(password) {
+        if (password.length < 6 || password.length > 16) {
+            layer.msg( "密码长度应为6-16个字符");
             return false;
         }
-        if (password.length < 4 || password.length > 16) {
-            div.innerHTML = "格式错误，密码长度为4-16位";
-            return false;
-        }
-        div.innerHTML = "密码格式正确";
         return true;
     }
 
     //检查密码是否一样
-    function checkSame() {
-        checkpassword();//检查密码
-        var d = document.getElementById("repwdspan");
-        d.innerHTML = "";
-        var pValue = document.getElementById("password").value;
-        if (pValue === "") {
-            //注意空的表示方法
-            d.innerHTML = "密码不能为空";
-            return false;
-        }
-        /** 校验确认密码*/
-        var rpValue = document.getElementById("repwd").value;
-        if (rpValue !== pValue) {
-            d.innerHTML = "两次密码输入不一致";
-            return false;
-        }
-        d.innerHTML = "输入一致";
-        return true;
-    }
-
-    function checkSum() {
-        checkname();
-        checkpassword();
-        checkSame();
-    }
-
-    //检验邮箱
-    function checkemail() {
-        var d = document.getElementById("emailspan");
-        d.innerHTML = "";
-        var eValue = document.getElementById("email").value;
-        if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(eValue)) {
-            d.innerHTML = "邮箱格式错误！";
-            return false;
-        } else
-        {
-            d.innerHTML = "邮箱格式正确";
-            return true;
-        }
-    }
-
-    // 检验身份证号格式
-    function checkeNO(NO) {
-        var str = NO;
-        //在JavaScript中，正则表达式只能使用"/"开头和结束，不能使用双引号
-        var Expression = /^\d{17}[\d|X]$|^\d{15}$/;
-        var objExp = new RegExp(Expression);
-        return objExp.test(str);
-    }
-
-    function checkNum() {
-        var d = document.getElementById("idspan");
-        d.innerHTML = "";
-        var value=document.getElementById("number").value;
-        if (value === "") {
-            d.innerHTML = "请输入身份证号码!";
-            return false;
-        }
-        if (!checkeNO(value)) {
-            d.innerHTML = "身份证号码格式错误!!";
-            return false;
-        }
-        if (checkeNO(value)) {
-            d.innerHTML = "身份证号码格式正确!!";
-            return true;
-        }
-    }
-
-    //判断输入的日期是否正确
-    function CheckDate(INDate) {
-        if (INDate === "") {
-            return false;
-        }
-        if (INDate.indexOf('-', 0) !== -1) {
-            separate = "-"
-        } else {
-            return false;
-        }
-        area = INDate.indexOf(separate, 0);
-        //获取年份
-        subYY = INDate.substr(0, area);
-        if (isNaN(subYY) || subYY <= 0) {
-            return false;
-        }
-        //转换月份
-        subMM = INDate.substr(area + 1, INDate.indexOf(separate, area + 1) - (area + 1))
-        if (isNaN(subMM) || subMM <= 0) {
-            return false;
-        }
-        if (subMM.length < 2) {
-            subMM = "0" + subMM
-        }
-        //转换日
-        area = INDate.lastIndexOf(separate);
-        subDD = INDate.substr(area + 1, INDate.length - area - 1);
-        if (isNaN(subDD) || subDD <= 0) {
-            return false;
-        }
-        if (eval(subDD) < 10) {
-            subDD = "0" + eval(subDD)
-        }
-        NewDate = subYY + "-" + subMM + "-" + subDD;
-        if (NewDate.length !== 10) {
-            return false;
-        }
-        if (NewDate.substr(4, 1) !== "-") {
-            return false;
-        }
-        if (NewDate.substr(7, 1) !== "-") {
-            return false;
-        }
-        var MM = NewDate.substr(5, 2);
-        var DD = NewDate.substr(8, 2);
-        if ((subYY % 4 === 0 && subYY % 100 !== 0) || subYY % 400 === 0) { //判断是否为闰年
-            if (parseInt(MM) === 2) {
-                if (DD > 29) {
-                    return false;
-                }
-            }
-        } else {
-            if (parseInt(MM) === 2) {
-                if (DD > 28) {
-                    return false;
-                }
-            }
-        }
-        var mm = [1, 3, 5, 7, 8, 10, 12]; //判断每月中的最大天数
-        for (i = 0; i < mm.length; i++) {
-            if (parseInt(MM) === mm[i]) {
-                return !(parseInt(DD) > 31);
-            }
-        }
-        if (parseInt(DD) > 30) {
-            return false;
-        }
-        if (parseInt(MM) > 12) {
+    function checkSame(password,repassword) {
+        if(password!==repassword){
+            layer.msg("两次密码输入不同");
             return false;
         }
         return true;
-    }
-
-    function checkdate() {
-        checkemail();
-        var d = document.getElementById("datespan");
-        d.innerHTML = "";
-        var value=document.getElementById("sDate").value;
-        if (value === "") {
-            d.innerHTML = "请输入日期";
-            return false;
-        }
-        if (CheckDate(value)) {
-            d.innerHTML = "您输入的日期是正确的";
-            return true;
-        }else{
-            d.innerHTML = "您输入的日期不正确！\n 请注意日期格式（如：2007/07/17或2007-07-17）以及二月是否为闰年！";
-            return false;
-        }
     }
 </script>
 
@@ -264,25 +122,22 @@
     $('form').submit(function () {
         var account = $("#account").val();
         var password = $("#password").val();
+        var repassword=$("#repwd").val();
         var code = $("#code").val();
-
-        var email = $("input[name='email']").val();
-        var number = $("input[name='number']").val();
-        var sdate = $("input[name='sDate']").val();
-        var checkboxes = document.getElementsByName("category");
 
         var data = {};
 
-        if (!checkname()) {
-            layer.msg('用户名格式不正确！');
+        if (!checkname(account)) {
             return false;
         }
-        if (!checkpassword()) {
-            layer.msg('密码格式不正确！');
+        if (!checkpassword(password)) {
             return false;
         }
-        if (!checkSame()) {
-            layer.msg('两次密码输入不一致！');
+        if (!checkSame(password,repassword)) {
+            return false;
+        }
+        if (!code) {
+            layer.msg('验证码不能为空！');
             return false;
         }
 
@@ -291,40 +146,6 @@
         data.account = account;
         data.password = password;
         data.code = code;
-        if(checkemail()) {
-            data.email = email;
-        }
-        if(checkdate()){
-            data.sdate=sdate;
-        }
-
-        var country=[];
-        if(checkboxes[0].checked)
-        {
-            country.push("America");
-        }
-        if(checkboxes[1].checked)
-        {
-            country.push("Canada");
-        }
-        if(checkboxes[2].checked)
-        {
-            country.push("Australia");
-        }
-        if(checkboxes[3].checked)
-        {
-            country.push("England");
-        }
-        if(checkboxes[4].checked)
-        {
-            country.push("French");
-        }
-        if(checkboxes[5].checked)
-        {
-            country.push("Germany");
-        }
-
-        data.country=country;
 
         $.ajax({
             type: "post",
@@ -334,7 +155,7 @@
             success: function (res) {
                 if (res.status) {
                     layer.msg(res.message, {time: 1000}, function () {
-                        window.location.href = "{:url('Login')}";
+                        window.location.href = "{:url('login')}";
                     });
                 } else {
                     //刷新验证码
@@ -346,7 +167,6 @@
         return false;
     });
 </script>
-
 
 </body>
 </html>
