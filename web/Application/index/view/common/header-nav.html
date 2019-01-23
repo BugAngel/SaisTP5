@@ -1,0 +1,32 @@
+<!--nav-->
+<div class="nav">
+    <ul>
+        <li class="nav-item cur"><a href="/index.php/index/index.html">首页</a></li>
+        <li class="nav-item "><a href="/index.php/plan/index.html">方案评估</a></li>
+        <li class="nav-item "><a href="/index.php/school/index.html">院校自选</a></li>
+        <li class="nav-item nav-list "><a >留学专题</a>
+            <div class="sub_nav">
+                <a href="/index.php/free/select.html">美国</a>
+                <a href="/index.php/free/more.html">英国</a>
+                <a href="/index.php/free/study.html">瑞士</a>
+                <a href="/index.php/free/spring.html">新加坡</a>
+            </div>
+        </li>
+        <li class="nav-item "><a href="/index.php/card/index.html">论坛交流</a></li>
+        <li class="nav-item nav-list "><a href="/index.php/book/index.html">常见问题</a>
+            <div class="sub_nav2">
+                <a href="/index.php/book/index/show/1.html">使用方法</a>
+                <a href="/index.php/book/index/show/2.html">关于我们</a>
+            </div>
+        </li>
+    </ul>
+    <!--移动的滑动-->
+    <div class="move-bg"></div>
+    <!--移动的滑动 end-->
+</div>
+
+<script>
+    $(function(){
+        $(".nav").movebg({width:200/*滑块的大小*/,extra:40/*额外反弹的距离*/,speed:300/*滑块移动的速度*/,rebound_speed:400/*滑块反弹的速度*/});
+    })
+</script>
