@@ -1,0 +1,62 @@
+@charset "utf-8";
+*{
+	margin:0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+.shzn{
+	margin:0 auto;
+	padding:42px 0 50px 0;
+	width:1200px;
+	overflow: hidden;
+}
+.shzn-left{
+	float:left;
+	padding:20px 0;
+	width:183px;
+	height:493px;
+	border:1px solid #eee;
+}
+.shzn-left ul li{
+	width:183px;
+	height:60px;
+	line-height: 60px;
+	text-align: left;
+	font-size: 18px;
+	text-indent: 1em; 
+}
+.shzn-left ul li.bs{
+	background: #252885;
+	color:#fff;
+}
+.shzn-right{
+	float:left;
+	margin-left: 40px;
+}
+.shzn-right1 p.sdsf{
+	line-height:30px;
+	font-size:20px;
+	color:#333;
+}
+.shzn-right1 ul{
+	margin-top:10px;
+}
+.shzn-right1 ul li{
+	width:975px;
+	height:76px;
+	line-height:76px;
+	border-bottom: 1px dashed #eee;
+	font-size:14px;
+	text-align:left;
+	color:#333;
+}
+
+/*番茄公寓*/
+.shzn-right1-nr{
+	margin-top:30px;
+	width:975px;
+	line-height:28px;
+	font-size:14px;
+	line-height:30px;
+}

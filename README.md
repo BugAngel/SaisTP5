@@ -1,5 +1,7 @@
 # WFT
 
+研一工程实践，留学信息管理与分析系统
+
 web项目的依赖管理由composer完成，web目录命令行下输入composer update即可更新框架到最新版本
 
 web目录下存放PHP工程

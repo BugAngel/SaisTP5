@@ -88,7 +88,7 @@ p span{ overflow:hidden;}
 
 /*页脚*/
 .footer-top{ width: 100%; background: #f5f5f5; padding: 55px 0;}
-.footer-top .lx{ width: 200px; background: url(../Images/icon-lx.png) no-repeat; padding-left: 103px;}
+.footer-top .lx{ width: 200px; background: url(../images/GitHub.jpg) no-repeat; padding-left: 103px;}
 .footer-top .lx b{ display: block; font-size: 16px; color: #333; margin-bottom: 6px;}
 .footer-top .lx span{ display: block; margin-top: 10px;}
 /* .footer-top .erweima{width:280px;padding-left: 15px;} */
