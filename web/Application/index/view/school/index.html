@@ -1,0 +1,36 @@
+{extend name="common/common" /}
+
+{block name="body"}
+<div class="HTML-con school-paiming"  style='font-family: 微软雅黑;color: #666;font-size: 12px;'>
+    <div class="tit HTML-con" style="color:#ff7c00;font-weight: bold;">院校排名</div>
+    <div class="paiming">
+        <div class="sx">
+            <span>地区：</span>
+            <a name="area" rel="1" class="sx_child " href="/index.php/school/index/area/1.html">全部</a>
+            <a name="area" rel="37" class="sx_child " href="/index.php/school/index/area/37.html">美国</a>
+            <a name="area" rel="3" class="sx_child " href="/index.php/school/index/area/3.html">英国</a>
+        </div>
+
+        <div class="sx clearfix">
+            <span  class="order_new" value="3"><b>排序</b><img src="__IMG__/order.png">&nbsp;QS世界排名：</span>
+            <a name="qs_order" rel="18" class="sx_child "href="/index.php/school/index/qs_order/18.html">全部</a>
+            <a name="qs_order" rel="47" class="sx_child "href="/index.php/school/index/qs_order/47.html">1-50名</a>
+            <a name="qs_order" rel="48" class="sx_child "href="/index.php/school/index/qs_order/48.html">1-100名</a>
+            <a name="qs_order" rel="49" class="sx_child "href="/index.php/school/index/qs_order/49.html">1-150名</a>
+            <a name="qs_order" rel="50" class="sx_child "href="/index.php/school/index/qs_order/50.html">1-200名</a>
+            <a name="qs_order" rel="51" class="sx_child "href="/index.php/school/index/qs_order/51.html">1-300名</a>
+            <div class="ranking">
+                <form action="/index.php/school/index.html" method="get">
+                    <input name="s_qs_order" type="text" value="" class="txt only" /> -
+                    <input name="s_qs_order2" type="text" value="" class="txt only" /> 名
+                    <input type="submit" value="确定" class="but" />
+                    <input name="get3" type="hidden" value="1" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+{/block}
