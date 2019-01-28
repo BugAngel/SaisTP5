@@ -19,4 +19,6 @@ class CollegeInfoItem(scrapy.Item):
     country = scrapy.Field()
     city = scrapy.Field()
     rate = scrapy.Field()
+    major_rank = scrapy.Field()
+    world_rank = scrapy.Field()
     pass

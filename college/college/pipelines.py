@@ -23,5 +23,15 @@ class CollegeInfoPipeline(object):
 
     def process_item(self, item, spider):
         postItem = dict(item)  # 把item转化成字典形式
-        self.post.insert(postItem)  # 向数据库插入一条记录
+
+        myquery = {"college_name": item["college_name"]}
+        mydoc = self.post.find_one(myquery,{"_id": 0})
+        if mydoc == None:
+            self.post.insert(postItem)  # 向数据库插入一条记录
+            return
+
+        if postItem!=mydoc:
+            self.post.find_one_and_delete(myquery,{"_id": 0})
+            self.post.insert(postItem)  # 向数据库插入一条记录
+            return
         # return item  # 会在控制台输出原item数据，可以选择不写
