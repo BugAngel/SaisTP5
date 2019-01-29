@@ -13,6 +13,7 @@ class CollegeItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
+
 class CollegeInfoItem(scrapy.Item):
     college_name = scrapy.Field()
     college_e_name = scrapy.Field()
@@ -20,5 +21,8 @@ class CollegeInfoItem(scrapy.Item):
     city = scrapy.Field()
     rate = scrapy.Field()
     major_rank = scrapy.Field()
+    major_rank_name = scrapy.Field()
     world_rank = scrapy.Field()
-    pass
+    icon = scrapy.Field()
+    hot_major = scrapy.Field()
+

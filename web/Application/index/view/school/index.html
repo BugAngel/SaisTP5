@@ -17,8 +17,22 @@
             <a name="qs_order" rel="47" class="sx_child "href="/index.php/school/index/qs_order/47.html">1-50名</a>
             <a name="qs_order" rel="48" class="sx_child "href="/index.php/school/index/qs_order/48.html">1-100名</a>
             <a name="qs_order" rel="49" class="sx_child "href="/index.php/school/index/qs_order/49.html">1-150名</a>
-            <a name="qs_order" rel="50" class="sx_child "href="/index.php/school/index/qs_order/50.html">1-200名</a>
-            <a name="qs_order" rel="51" class="sx_child "href="/index.php/school/index/qs_order/51.html">1-300名</a>
+            <div class="ranking">
+                <form action="/index.php/school/index.html" method="get">
+                    <input name="s_qs_order" type="text" value="" class="txt only" /> -
+                    <input name="s_qs_order2" type="text" value="" class="txt only" /> 名
+                    <input type="submit" value="确定" class="but" />
+                    <input name="get3" type="hidden" value="1" />
+                </form>
+            </div>
+        </div>
+
+        <div class="sx clearfix">
+            <span  class="order_new" value="3"><b>排序</b><img src="__IMG__/order.png">&nbsp;本国排名：</span>
+            <a name="qs_order" rel="18" class="sx_child " href="/index.php/school/index/qs_order/18.html">全部</a>
+            <a name="qs_order" rel="47" class="sx_child " href="/index.php/school/index/qs_order/47.html">1-50名</a>
+            <a name="qs_order" rel="48" class="sx_child " href="/index.php/school/index/qs_order/48.html">1-100名</a>
+
             <div class="ranking">
                 <form action="/index.php/school/index.html" method="get">
                     <input name="s_qs_order" type="text" value="" class="txt only" /> -
@@ -30,7 +44,44 @@
         </div>
     </div>
 
+    <div class="zj">
+        <span id="sp" style="display:none;"></span>
+        <p class="qcqb"></p>
+    </div>
 
-
+    <div  id='user' style='font-family: 微软雅黑;color: #666;font-size: 12px;'>
+        <table width="" border="0" cellpadding="0" cellspacing="0" class="yuanxiao-table">
+            <!-- foreach循环 -->
+            {foreach name="college" item="value"}
+                <tr>
+                    <td width="550">
+                        <a href="{:url('school/index', ['id' => $value.href])}" class="school-img clearfix">
+                            <i>
+                                <img width="50px;" height="50px;" src="__IMG__/colleges/{$value.icon}" />
+                            </i>
+                            <div class="txt">
+                                <b>{$value.college}</b>
+                                <span>{$value.college_e_name}</span>
+                            </div>
+                        </a>
+                    </td>
+                    <td width="150">
+                        <span>{$value.major_rank_name}<em>{$value.major_rank}</em></span>
+                        <span>QS世界排名：<em>{$value.world_rank}</em></span>
+                    </td>
+                    <td width="150">
+                        <span>录取率：<em>{$value.rate}</em></span>
+                        <span>热门专业：<em>{$value.hot_major}</em></span>
+                    </td>
+                    <td width="195">
+                    </td>
+                    <td width="150">
+                        <span>国家：<em>{$value.country}</em></span>
+                        <span class="region">城市：<em>{$value.city}</em></span>
+                    </td>
+                </tr>
+            {/foreach}
+        </table>
+    </div>
 </div>
 {/block}

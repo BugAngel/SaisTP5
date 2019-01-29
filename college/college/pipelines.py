@@ -19,7 +19,7 @@ class CollegeInfoPipeline(object):
         # 连接所需数据库
         db = client['wft']
         # 连接所用集合，也就是我们通常所说的表
-        self.post = db['wft_college']
+        self.post = db['wft_college_info']
 
     def process_item(self, item, spider):
         postItem = dict(item)  # 把item转化成字典形式
