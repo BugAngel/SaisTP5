@@ -9,27 +9,40 @@
 namespace app\index\controller;
 
 
+use app\index\model\CollegeInfo;
 use think\Controller;
 
 class School extends Controller
 {
-    public function index()
+    public function index($area=0)
     {
         $this->assign('title',"院校自选");
+        $map=[];
+        switch ($area) {
+            case 1:
+                $map['country'] = array('in','美国');
+                break;
+            case 2:
+                $map['country'] = array('in','英国');
+                break;
+        }
+        $list = CollegeInfo::all(function($query)use($map){
+            $query->where($map)->order('world_rank', 'asc');
+        });
         $college=[];
-        for($key=0;$key<10;$key++){
+        foreach ($list as $school) {
             $college[]=[
-                'href'=>'jianqiao',
-                'icon'=>"beikaluolainai.png",
-                'college'=>"剑桥大学",
-                'college_e_name'=>"jian qiao",
-                'major_rank_name'=> '泰晤士',
-                'major_rank'=> 1,
-                'world_rank'=> 1,
-                'rate'=> "20%",
-                'country'=> "英国",
-                'city'=> "那个哪",
-                'hot_major'=> "哈哈",
+                'href'=>$school->college_name,
+                'icon'=>$school->icon,
+                'college_name'=>$school->college_name,
+                'college_e_name'=>$school->college_e_name,
+                'major_rank_name'=> $school->major_rank_name,
+                'major_rank'=> $school->major_rank,
+                'world_rank'=> $school->world_rank,
+                'rate'=> $school->rate,
+                'country'=> $school->country,
+                'city'=> $school->city,
+                'hot_major'=> implode("、",$school->hot_major),
             ];
         }
         return $this->fetch('',['college'=>$college]);

@@ -10,8 +10,6 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\captcha\Captcha;
-use think\Db;
-use think\exception;
 use app\index\model\User;
 
 class LoginOrRegister extends Controller
@@ -20,6 +18,7 @@ class LoginOrRegister extends Controller
      * 登录方法
      */
     public function login(){
+        $this->assign('title',"登录界面");
         return $this->fetch();
     }
 
@@ -27,6 +26,7 @@ class LoginOrRegister extends Controller
      * 注册方法
      */
     public function register(){
+        $this->assign('title',"注册界面");
         return $this->fetch();
     }
 
@@ -57,25 +57,18 @@ class LoginOrRegister extends Controller
         }
         /**检测用户名是否正确**/
         $account = input("account", "", "trim");    //接收用户名，并且使用trim函数去除首尾空格
-        $return = $this->checkAccount($account);
+        $return = $this->checkAccount(User::get(['account' => $account]));
         if (!$return) {
             $res['statue'] = 0;
             $res['message'] = "账号已被注册！";
             return json($res);
         } else {
             $password = input("password", "", "md5");    //接收密码，并且使用md5函数加密
-            $email = input("email");    //邮箱
-            $sdate = input("sdate");//出生日期
-            $country = input("country");//感兴趣国家
-            $user = new User();
-            $user->setAccount($account);
-            $user->setPassword($password);
-            $user->setEmail($email);
-            $user->setBirthday($sdate);
-            $user->setCountry($country);
-            $user->setLoginip($this->request->ip());
-            trace($user);
-            Db::name('user')->insert($user->toArray());
+            $user=new User;
+            $user->account=$account;
+            $user->password=$password;
+            $user->loginip=$this->request->ip();
+            $user->save();
             $res['status'] = 1;
             $res['message'] = '注册成功!';
             return json($res);
@@ -95,24 +88,17 @@ class LoginOrRegister extends Controller
         /**检测用户名密码是否正确**/
         $account = input("account", " ", "trim");    //接收用户名，并且使用trim函数去除首尾空格
         $password = input("password", " ", "md5");    //接收密码，并且使用md5函数加密
-        $return = $this->checkPassword($account, $password);
+        $user = User::get(['account' => $account]);
+        $return = $this->checkPassword($user,$password);
         if (!$return) {
             $res['statue'] = 0;
             $res['message'] = "账号密码不匹配！";
             return json($res);
         } else {
-            $data = array(
-                "loginip" => $this->request->ip(),
-            );
-            try {
-                Db::name('user')
-                    ->where('account', $account)
-                    ->update($data);
-            } catch (Exception $e) {
-                echo 'Message: ' . $e->getMessage();
-            }
-            session('id', $return["id"]);     //将id存入session
-            session('account', $return["account"]); //将account存入session
+            $user->loginip=$this->request->ip();
+            $user->save();
+            session('id', $user->id);     //将id存入session
+            session('account', $user->account); //将account存入session
             $res['status'] = 1;
             $res['message'] = '登录成功!';
             return json($res);
@@ -125,32 +111,21 @@ class LoginOrRegister extends Controller
      * @param $password
      * @return bool
      */
-    public function checkPassword($account,$password){
-        $map['account'] = $account;
-        try {
-            $admin = Db::name('user')->where($map)->find();
-        }catch (Exception $e){
-            echo 'Message: ' .$e->getMessage();
-        }
-        if($admin['password'] === $password){
-            return $admin;
-        }else{
+    public function checkPassword(User $user,$password){
+        if($user===null){
             return false;
+        }else{
+            return $user->checkPassword($password);
         }
     }
 
     /***
      * @param $account : 用户账号
-     * @return
+     * @return true 表示账号未被注册 false表示账号已被注册
      */
-    public function checkAccount($account){
-        $map['account'] = $account;
-        try {
-            $admin = Db::name('user')->where($map)->find();
-        }catch (Exception $e){
-            echo 'Message: ' .$e->getMessage();
-        }
-        return $admin==null;
+    public function checkAccount($user)
+    {
+        return $user === null ;
     }
 
     /**
@@ -161,5 +136,4 @@ class LoginOrRegister extends Controller
         unset($_SESSION['username']);
         $this->redirect("login");
     }
-
 }

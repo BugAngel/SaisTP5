@@ -5,10 +5,10 @@
     <div class="tit HTML-con" style="color:#ff7c00;font-weight: bold;">院校排名</div>
     <div class="paiming">
         <div class="sx">
-            <span>地区：</span>
-            <a name="area" rel="1" class="sx_child " href="/index.php/school/index/area/1.html">全部</a>
-            <a name="area" rel="37" class="sx_child " href="/index.php/school/index/area/37.html">美国</a>
-            <a name="area" rel="3" class="sx_child " href="/index.php/school/index/area/3.html">英国</a>
+            <span>国家：</span>
+            <a name="area" rel="1" class="sx_child " href="{:url('/index/school/index',['area' => 0])}">全部</a>
+            <a name="area" rel="37" class="sx_child " href="{:url('/index/school/index',['area' => 1])}">美国</a>
+            <a name="area" rel="3" class="sx_child " href="{:url('/index/school/index',['area' => 2])}">英国</a>
         </div>
 
         <div class="sx clearfix">
@@ -55,18 +55,18 @@
             {foreach name="college" item="value"}
                 <tr>
                     <td width="550">
-                        <a href="{:url('school/index', ['id' => $value.href])}" class="school-img clearfix">
+                        <a href="{:url('/index/school/detail', ['id' => $value.href])}" class="school-img clearfix">
                             <i>
                                 <img width="50px;" height="50px;" src="__IMG__/colleges/{$value.icon}" />
                             </i>
                             <div class="txt">
-                                <b>{$value.college}</b>
+                                <b>{$value.college_name}</b>
                                 <span>{$value.college_e_name}</span>
                             </div>
                         </a>
                     </td>
                     <td width="150">
-                        <span>{$value.major_rank_name}<em>{$value.major_rank}</em></span>
+                        <span>{$value.major_rank_name}：<em>{$value.major_rank}</em></span>
                         <span>QS世界排名：<em>{$value.world_rank}</em></span>
                     </td>
                     <td width="150">
@@ -77,7 +77,7 @@
                     </td>
                     <td width="150">
                         <span>国家：<em>{$value.country}</em></span>
-                        <span class="region">城市：<em>{$value.city}</em></span>
+                        <span class="region">地区：<em>{$value.city}</em></span>
                     </td>
                 </tr>
             {/foreach}
