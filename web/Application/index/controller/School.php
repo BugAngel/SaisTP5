@@ -41,7 +41,7 @@ class School extends Controller
                 'world_rank'=> $school->world_rank,
                 'rate'=> $school->rate,
                 'country'=> $school->country,
-                'city'=> $school->city,
+                'area'=> $school->area,
                 'hot_major'=> implode("、",$school->hot_major),
             ];
         }

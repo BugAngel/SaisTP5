@@ -1,14 +1,16 @@
 {extend name="common/common" /}
 
 {block name="body"}
+
 <div class="HTML-con school-paiming"  style='font-family: 微软雅黑;color: #666;font-size: 12px;'>
     <div class="tit HTML-con" style="color:#ff7c00;font-weight: bold;">院校排名</div>
     <div class="paiming">
         <div class="sx">
             <span>国家：</span>
-            <a name="area" rel="1" class="sx_child " href="{:url('/index/school/index',['area' => 0])}">全部</a>
-            <a name="area" rel="37" class="sx_child " href="{:url('/index/school/index',['area' => 1])}">美国</a>
-            <a name="area" rel="3" class="sx_child " href="{:url('/index/school/index',['area' => 2])}">英国</a>
+            <input name="country" type="radio" value="all">全部
+            <a name="area" class="sx_child " href="{:url('/index/school/index',['area' => 0])}">全部</a>
+            <a name="area" class="sx_child " href="{:url('/index/school/index',['area' => 1])}">美国</a>
+            <a name="area" class="sx_child " href="{:url('/index/school/index',['area' => 2])}">英国</a>
         </div>
 
         <div class="sx clearfix">
@@ -66,22 +68,23 @@
                         </a>
                     </td>
                     <td width="150">
-                        <span>{$value.major_rank_name}：<em>{$value.major_rank}</em></span>
                         <span>QS世界排名：<em>{$value.world_rank}</em></span>
+                        <span>{$value.major_rank_name}：<em>{$value.major_rank}</em></span>
                     </td>
                     <td width="150">
-                        <span>录取率：<em>{$value.rate}</em></span>
-                        <span>热门专业：<em>{$value.hot_major}</em></span>
+                        <span>录取率：<em>{if $value.rate !=='--'} {$value.rate}% {else /}暂无 {/if}</em></span>
+                        <span>热门专业：<em>{if $value.hot_major !=='--'} {$value.hot_major} {else /}暂无 {/if}</em></span>
                     </td>
                     <td width="195">
                     </td>
                     <td width="150">
                         <span>国家：<em>{$value.country}</em></span>
-                        <span class="region">地区：<em>{$value.city}</em></span>
+                        <span class="region">地区：<em>{$value.area}</em></span>
                     </td>
                 </tr>
             {/foreach}
         </table>
     </div>
 </div>
+
 {/block}

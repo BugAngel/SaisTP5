@@ -72,22 +72,29 @@ class CollegeInfoSpider(scrapy.Spider):
         item['college_e_name'] = ' '.join(college.css('.college-e-name::text').extract_first().split())
         local=college.css('.local span::text').extract_first()
         item['country'] = local.split()[0]
-        item['major_rank'] = rank.css('.major-rank::text').extract_first().split()[0]
-        item['world_rank'] = rank.css('.world-rank::text').extract_first().split()[0]
+        item['world_rank'] = int(rank.css('.world-rank::text').extract_first().split()[0])
         item['major_rank_name'] = rank.css('.rank-icon p::text').extract_first()
         item['icon'] = response.css(".college-badge img::attr(src)").extract_first().split('/')[-1]
         item['hot_major'] = college.css('.hot-major span::text').extract_first().split()[0].split('、')
-        try:
-            item['city'] = local.split()[1]
-        except:
-            item['city'] = "--"
-        else:
-            item['city'] = local.split()[1].replace("*(1)","")
 
         try:
-            item['rate'] = college.css('.rate span::text').extract_first().split()[0]
+            item['major_rank'] = int(rank.css('.major-rank::text').extract_first().split()[0])
+        except:
+            item['major_rank'] = "--"
+        else:
+            item['major_rank'] = int(rank.css('.major-rank::text').extract_first().split()[0])
+
+        try:
+            item['area'] = local.split()[1]
+        except:
+            item['area'] = "英格兰"  #赃值处理，就这一个有问题
+        else:
+            item['area'] = local.split()[1].replace("*(1)","")
+
+        try:
+            item['rate'] = float(college.css('.rate span::text').extract_first().split()[0].replace("约","").strip('%'))
         except:
             item['rate'] = "--"
         else:
-            item['rate'] = college.css('.rate span::text').extract_first().split()[0].replace("约","")
+            item['rate'] = float(college.css('.rate span::text').extract_first().split()[0].replace("约","").strip('%'))
         yield item
