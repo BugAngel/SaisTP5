@@ -4,47 +4,54 @@
 
 <div class="HTML-con school-paiming"  style='font-family: 微软雅黑;color: #666;font-size: 12px;'>
     <div class="tit HTML-con" style="color:#ff7c00;font-weight: bold;">院校排名</div>
-    <div class="paiming">
-        <div class="sx">
-            <span>国家：</span>
-            <input name="country" type="radio" value="all">全部
-            <a name="area" class="sx_child " href="{:url('/index/school/index',['area' => 0])}">全部</a>
-            <a name="area" class="sx_child " href="{:url('/index/school/index',['area' => 1])}">美国</a>
-            <a name="area" class="sx_child " href="{:url('/index/school/index',['area' => 2])}">英国</a>
+    <form id="form" name="form" method="post" action="{:url('index')}" autocomplete="off" role="form" class="form-inline">
+        <span style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">国家：</span>
+        <div class="form-group" style="width: 150px">
+            <select id="select_country" class="form-control col-md-10 m-2">
+                <option value="全部">全部</option>
+                <option value="美国">美国</option>
+                <option value="英国">英国</option>
+            </select>
         </div>
 
-        <div class="sx clearfix">
-            <span  class="order_new" value="3"><b>排序</b><img src="__IMG__/order.png">&nbsp;QS世界排名：</span>
-            <a name="qs_order" rel="18" class="sx_child "href="/index.php/school/index/qs_order/18.html">全部</a>
-            <a name="qs_order" rel="47" class="sx_child "href="/index.php/school/index/qs_order/47.html">1-50名</a>
-            <a name="qs_order" rel="48" class="sx_child "href="/index.php/school/index/qs_order/48.html">1-100名</a>
-            <a name="qs_order" rel="49" class="sx_child "href="/index.php/school/index/qs_order/49.html">1-150名</a>
-            <div class="ranking">
-                <form action="/index.php/school/index.html" method="get">
-                    <input name="s_qs_order" type="text" value="" class="txt only" /> -
-                    <input name="s_qs_order2" type="text" value="" class="txt only" /> 名
-                    <input type="submit" value="确定" class="but" />
-                    <input name="get3" type="hidden" value="1" />
-                </form>
-            </div>
+        <span class="order_new" style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">&nbsp;QS世界排名：</span>
+        <div class="form-group" style="width: 300px">
+            <select id="select_qs_low" class="form-control col-md-4 m-2">
+                <!-- for循环 -->
+                {for start='1' end='141'}
+                <option value={$i}>{$i}</option>
+                {/for}
+            </select>
+            <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">-</span>
+            <select id="select_qs_high" class="form-control col-md-4 m-2">
+                <!-- for循环 -->
+                {for start='1' end='141'}
+                <option value={$i}>{$i}</option>
+                {/for}
+            </select>
+            <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">名</span>
         </div>
 
-        <div class="sx clearfix">
-            <span  class="order_new" value="3"><b>排序</b><img src="__IMG__/order.png">&nbsp;本国排名：</span>
-            <a name="qs_order" rel="18" class="sx_child " href="/index.php/school/index/qs_order/18.html">全部</a>
-            <a name="qs_order" rel="47" class="sx_child " href="/index.php/school/index/qs_order/47.html">1-50名</a>
-            <a name="qs_order" rel="48" class="sx_child " href="/index.php/school/index/qs_order/48.html">1-100名</a>
-
-            <div class="ranking">
-                <form action="/index.php/school/index.html" method="get">
-                    <input name="s_qs_order" type="text" value="" class="txt only" /> -
-                    <input name="s_qs_order2" type="text" value="" class="txt only" /> 名
-                    <input type="submit" value="确定" class="but" />
-                    <input name="get3" type="hidden" value="1" />
-                </form>
-            </div>
+        <span class="order_new" style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">本国排名：</span>
+        <div class="form-group" style="width: 300px">
+            <select id="select_local_low" class="form-control col-md-4 m-2">
+                <!-- for循环 -->
+                {for start='1' end='141'}
+                <option value={$i}>{$i}</option>
+                {/for}
+            </select>
+            <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">-</span>
+            <select id="select_local_high" class="form-control col-md-4 m-2">
+                <!-- for循环 -->
+                {for start='1' end='141'}
+                <option value={$i}>{$i}</option>
+                {/for}
+            </select>
+            <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">名</span>
         </div>
-    </div>
+
+        <input type="submit" class="btn btn-primary" value="确定">
+    </form>
 
     <div class="zj">
         <span id="sp" style="display:none;"></span>
@@ -55,36 +62,80 @@
         <table width="" border="0" cellpadding="0" cellspacing="0" class="yuanxiao-table">
             <!-- foreach循环 -->
             {foreach name="college" item="value"}
-                <tr>
-                    <td width="550">
-                        <a href="{:url('/index/school/detail', ['id' => $value.href])}" class="school-img clearfix">
-                            <i>
-                                <img width="50px;" height="50px;" src="__IMG__/colleges/{$value.icon}" />
-                            </i>
-                            <div class="txt">
-                                <b>{$value.college_name}</b>
-                                <span>{$value.college_e_name}</span>
-                            </div>
-                        </a>
-                    </td>
-                    <td width="150">
-                        <span>QS世界排名：<em>{$value.world_rank}</em></span>
-                        <span>{$value.major_rank_name}：<em>{$value.major_rank}</em></span>
-                    </td>
-                    <td width="150">
-                        <span>录取率：<em>{if $value.rate !=='--'} {$value.rate}% {else /}暂无 {/if}</em></span>
-                        <span>热门专业：<em>{if $value.hot_major !=='--'} {$value.hot_major} {else /}暂无 {/if}</em></span>
-                    </td>
-                    <td width="195">
-                    </td>
-                    <td width="150">
-                        <span>国家：<em>{$value.country}</em></span>
-                        <span class="region">地区：<em>{$value.area}</em></span>
-                    </td>
-                </tr>
+            <tr>
+                <td width="550">
+                    <a href="{:url('/index/school/detail', ['id' => $value.href])}" class="school-img clearfix">
+                        <i>
+                            <img width="45px;" height="45px;" src="__IMG__/colleges/{$value.icon}" />
+                        </i>
+                        <div class="txt">
+                            <b>{$value.college_name}</b>
+                            <span>{$value.college_e_name}</span>
+                        </div>
+                    </a>
+                </td>
+                <td width="150">
+                    <span>QS世界排名：<em>{$value.world_rank}</em></span>
+                    <span>{$value.major_rank_name}：<em>{$value.major_rank}</em></span>
+                </td>
+                <td width="150">
+                    <span>录取率：<em>{if $value.rate !=='--'} {$value.rate}% {else /}暂无 {/if}</em></span>
+                    <span>热门专业：<em>{if $value.hot_major !=='--'} {$value.hot_major} {else /}暂无 {/if}</em></span>
+                </td>
+                <td width="195">
+                </td>
+                <td width="150">
+                    <span>国家：<em>{$value.country}</em></span>
+                    <span class="region">地区：<em>{$value.area}</em></span>
+                </td>
+            </tr>
             {/foreach}
         </table>
     </div>
 </div>
 
+<script>
+    $('form').submit(function () {
+        var countryValue=$("#select_country").val();
+        var qsLowValue=$("#select_qs_low").val();
+        var qsHighValue=$("#select_qs_high").val();
+        var localLowValue=$("#select_local_low").val();
+        var localHighValue=$("#select_local_high").val();
+
+        if(parseInt(qsLowValue)>parseInt(qsHighValue)) {
+            layer.msg("请输入正确的QS世界排名顺序");
+            return false;
+        }
+        if(parseInt(localLowValue)>parseInt(localHighValue)) {
+            layer.msg("请输入正确的本国排名顺序");
+            return false;
+        }
+        var url = $(this).attr('action');
+
+        $.ajax({
+            type: "post",
+            url: url,
+            dataType: "json",
+            data: {country:countryValue,qsLow:qsLowValue,qsHigh:qsHighValue,majorLow:localLowValue,majorHigh:localHighValue},
+        });
+        return false;
+    });
+</script>
+
+<script>
+    function setAreaCookie(area){
+        $.cookie('area', area);
+    }
+
+    function setQSOrderCookie(low,high){
+        $.cookie('qs_order_low', low);
+        $.cookie('qs_order_high', high);
+    }
+
+    window.onload=function(){
+
+    };
+</script>
+
 {/block}
+
