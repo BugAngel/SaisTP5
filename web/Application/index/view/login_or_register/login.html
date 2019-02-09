@@ -1,37 +1,38 @@
 {extend name="login_or_register/common" /}
 
 {block name="body"}
-    <div class="ui stacked segment blue">
-                    <form id="form" name="form" method="post" action="{:url('checkLogin')}" autocomplete="off">
-                        <div class="field">
-                            <div class="ui icon input">
-                                <i class="user icon"></i>
-                                <input id="account" name="account" type="text" placeholder="用户名" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui icon input">
-                                <i class="lock icon"></i>
-                                <input id="password" name="password" type="password" placeholder="密码" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui icon input">
-                                <a> <img class="reloadverify" src="{:url('captcha')}" id="imgcode" onClick="this.src=this.src+'?rand='+Math.random()"
-                                         alt="captcha"></a>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui icon input">
-                                <input id="code" name="code" type="text" placeholder="验证码" autocomplete="off">
-                            </div>
-                        </div>
-                        <input type="submit" id="login" value="登录" class="ui fluid large teal submit  button" >
-                    </form>
-                </div>
-    <div class="ui message">
-        新用户? <a href="{:url('register')}">注册</a>
-     </div>
+<div class="ui stacked segment blue">
+    <form id="form" name="form" method="post" action="{:url('checkLogin')}" autocomplete="off">
+        <div class="field">
+            <div class="ui icon input">
+                <i class="user icon"></i>
+                <input id="account" name="account" type="text" placeholder="用户名" autocomplete="off">
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui icon input">
+                <i class="lock icon"></i>
+                <input id="password" name="password" type="password" placeholder="密码" autocomplete="off">
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui icon input">
+                <a> <img class="reloadverify" src="{:url('captcha')}" id="imgcode"
+                         onClick="this.src=this.src+'?rand='+Math.random()"
+                         alt="captcha"></a>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui icon input">
+                <input id="code" name="code" type="text" placeholder="验证码" autocomplete="off">
+            </div>
+        </div>
+        <input type="submit" id="login" value="登录" class="ui fluid large teal submit  button">
+    </form>
+</div>
+<div class="ui message">
+    新用户? <a href="{:url('register')}">注册</a>
+</div>
 
 <!--ajax异步提交-->
 <script>

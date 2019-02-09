@@ -51,7 +51,7 @@ class LoginOrRegister extends Controller
         $code = input('code');
         $captcha = captcha_check($code);
         if (!$captcha) {
-            $res['statue'] = 0;
+            $res['status'] = 0;
             $res['message'] = "验证码错误";
             return json($res);
         }
@@ -59,7 +59,7 @@ class LoginOrRegister extends Controller
         $account = input("account", "", "trim");    //接收用户名，并且使用trim函数去除首尾空格
         $return = $this->checkAccount(User::get(['account' => $account]));
         if (!$return) {
-            $res['statue'] = 0;
+            $res['status'] = 0;
             $res['message'] = "账号已被注册！";
             return json($res);
         } else {
@@ -80,7 +80,7 @@ class LoginOrRegister extends Controller
         $code = input('code');
         $captcha = captcha_check($code);
         if (!$captcha) {
-            $res['statue'] = 0;
+            $res['status'] = 0;
             $res['message'] = "验证码错误";
             return json($res);
         }
@@ -91,7 +91,7 @@ class LoginOrRegister extends Controller
         $user = User::get(['account' => $account]);
         $return = $this->checkPassword($user,$password);
         if (!$return) {
-            $res['statue'] = 0;
+            $res['status'] = 0;
             $res['message'] = "账号密码不匹配！";
             return json($res);
         } else {

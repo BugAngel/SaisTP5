@@ -34,14 +34,14 @@
 
         <span class="order_new" style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">本国排名：</span>
         <div class="form-group" style="width: 300px">
-            <select id="select_local_low" class="form-control col-md-4 m-2">
+            <select id="select_major_low" class="form-control col-md-4 m-2">
                 <!-- for循环 -->
                 {for start='1' end='141'}
                 <option value={$i}>{$i}</option>
                 {/for}
             </select>
             <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">-</span>
-            <select id="select_local_high" class="form-control col-md-4 m-2">
+            <select id="select_major_high" class="form-control col-md-4 m-2">
                 <!-- for循环 -->
                 {for start='1' end='141'}
                 <option value={$i}>{$i}</option>
@@ -53,18 +53,13 @@
         <input type="submit" class="btn btn-primary" value="确定">
     </form>
 
-    <div class="zj">
-        <span id="sp" style="display:none;"></span>
-        <p class="qcqb"></p>
-    </div>
-
     <div  id='user' style='font-family: 微软雅黑;color: #666;font-size: 12px;'>
         <table width="" border="0" cellpadding="0" cellspacing="0" class="yuanxiao-table">
             <!-- foreach循环 -->
             {foreach name="college" item="value"}
             <tr>
                 <td width="550">
-                    <a href="{:url('/index/school/detail', ['id' => $value.href])}" class="school-img clearfix">
+                    <a href="{:url('/index/school/detail')}" class="school-img clearfix">
                         <i>
                             <img width="45px;" height="45px;" src="__IMG__/colleges/{$value.icon}" />
                         </i>
@@ -92,48 +87,48 @@
             {/foreach}
         </table>
     </div>
+
 </div>
+
+
 
 <script>
     $('form').submit(function () {
         var countryValue=$("#select_country").val();
         var qsLowValue=$("#select_qs_low").val();
         var qsHighValue=$("#select_qs_high").val();
-        var localLowValue=$("#select_local_low").val();
-        var localHighValue=$("#select_local_high").val();
+        var majorLowValue=$("#select_major_low").val();
+        var majorHighValue=$("#select_major_high").val();
 
         if(parseInt(qsLowValue)>parseInt(qsHighValue)) {
             layer.msg("请输入正确的QS世界排名顺序");
             return false;
         }
-        if(parseInt(localLowValue)>parseInt(localHighValue)) {
+        if(parseInt(majorLowValue)>parseInt(majorHighValue)) {
             layer.msg("请输入正确的本国排名顺序");
             return false;
         }
-        var url = $(this).attr('action');
-
-        $.ajax({
-            type: "post",
-            url: url,
-            dataType: "json",
-            data: {country:countryValue,qsLow:qsLowValue,qsHigh:qsHighValue,majorLow:localLowValue,majorHigh:localHighValue},
-        });
+        setCookie(countryValue,qsLowValue,qsHighValue,majorLowValue,majorHighValue);
+        window.location.href="{:url('index')}"+'?country='+countryValue+'&qsLow='+qsLowValue+'&qsHigh='+qsHighValue+'&majorLow='+majorLowValue+'&majorHigh='+majorHighValue;
         return false;
     });
 </script>
 
 <script>
-    function setAreaCookie(area){
-        $.cookie('area', area);
-    }
-
-    function setQSOrderCookie(low,high){
-        $.cookie('qs_order_low', low);
-        $.cookie('qs_order_high', high);
+    function setCookie(countryValue,qsLowValue,qsHighValue,majorLowValue,majorHighValue){
+        $.cookie('country', countryValue);
+        $.cookie('qsLow', qsLowValue);
+        $.cookie('qsHigh', qsHighValue);
+        $.cookie('majorLow', majorLowValue);
+        $.cookie('majorHigh', majorHighValue);
     }
 
     window.onload=function(){
-
+        $("#select_country").val($.cookie('country'));
+        $("#select_qs_low").val($.cookie('qsLow'));
+        $("#select_qs_high").val($.cookie('qsHigh'));
+        $("#select_major_low").val($.cookie('majorLow'));
+        $("#select_major_high").val($.cookie('majorHigh'));
     };
 </script>
 
