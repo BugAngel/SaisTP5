@@ -1,32 +1,40 @@
-<!--nav-->
-<div class="nav">
-    <ul>
-        <li class="nav-item cur"><a href="__PUBLIC__/index.php">首页</a></li>
-        <li class="nav-item "><a href="/index.php/plan/index.html">方案评估</a></li>
-        <li class="nav-item "><a href="__PUBLIC__/index.php/index/school/index">院校自选</a></li>
-        <li class="nav-item nav-list "><a href="__PUBLIC__/index.php/index/detail/xingqian">出国指南</a>
-            <div class="sub_nav2">
-                <a href="__PUBLIC__/index.php/index/detail/xingqian">行前准备 </a>
-                <a href="__PUBLIC__/index.php/index/detail/xuexi">学习指南</a>
-                <a href="__PUBLIC__/index.php/index/detail/kecheng">课程对照</a>
-                <a href="__PUBLIC__/index.php/index/detail/gonggong">公共用语</a>
-            </div>
-        </li>
-        <li class="nav-item "><a href="/index.php/card/index.html">论坛交流</a></li>
-        <li class="nav-item nav-list "><a href="__PUBLIC__/index.php/index/help/method">常见问题</a>
-            <div class="sub_nav2">
-                <a href="__PUBLIC__/index.php/index/help/method">使用方法</a>
-                <a href="__PUBLIC__/index.php/index/help/about">关于我们</a>
-            </div>
-        </li>
-    </ul>
-    <!--移动的滑动-->
-    <div class="move-bg"></div>
-    <!--移动的滑动 end-->
+<div class="container" style="font-family:微软雅黑; width: 1200px; font-size: 16px; text-align:center; ">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li style="width: 200px"><a href="__PUBLIC__/index.php">首页</a></li>
+                            <li style="width: 200px"><a href="#">方案评估</a></li>
+                            <li style="width: 200px"><a href="__PUBLIC__/index.php/index/school/index">院校自选</a></li>
+                            <li class="dropdown" style="width: 200px">
+                                <a href="__PUBLIC__/index.php/index/detail/xingqian" class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    出国指南 <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu" style="font-family:微软雅黑;font-size: 16px;text-align:center;">
+                                    <li><a href="__PUBLIC__/index.php/index/detail/xingqian">行前准备</a></li>
+                                    <li><a href="__PUBLIC__/index.php/index/detail/xuexi">学习指南</a></li>
+                                    <li><a href="__PUBLIC__/index.php/index/detail/kecheng">课程对照</a></li>
+                                    <li><a href="__PUBLIC__/index.php/index/detail/gonggong">公共用语</a></li>
+                                </ul>
+                            </li>
+                            <li style="width: 200px"><a href="#">论坛交流</a></li>
+                            <li class="dropdown" >
+                                <a href="__PUBLIC__/index.php/index/help/method" class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    常见问题 <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu" style="font-family:微软雅黑;font-size: 16px; text-align:center;">
+                                    <li><a href="__PUBLIC__/index.php/index/help/method">使用方法</a></li>
+                                    <li><a href="__PUBLIC__/index.php/index/help/about">关于我们</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
 </div>
-
-<script>
-    $(function(){
-        $(".nav").movebg({width:200/*滑块的大小*/,extra:40/*额外反弹的距离*/,speed:300/*滑块移动的速度*/,rebound_speed:400/*滑块反弹的速度*/});
-    })
-</script>

@@ -2,59 +2,61 @@
 
 {block name="body"}
 
-<div class="HTML-con school-paiming"  style='font-family: 微软雅黑;color: #666;font-size: 12px;'>
-    <div class="tit HTML-con" style="color:#ff7c00;font-weight: bold;">院校排名</div>
-    <form id="form" name="form" method="post" action="{:url('index')}" autocomplete="off" role="form" class="form-inline">
-        <span style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">国家：</span>
-        <div class="form-group" style="width: 150px">
-            <select id="select_country" class="form-control col-md-10 m-2">
-                <option value="全部">全部</option>
-                <option value="美国">美国</option>
-                <option value="英国">英国</option>
-            </select>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column" style="margin-bottom: 20px">
+            <form id="form" name="form" method="post" action="{:url('index')}" autocomplete="off" role="form" class="form-inline">
+                <span style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">国家：</span>
+                <div class="form-group" style="width: 150px">
+                    <select id="select_country" class="form-control">
+                        <option value="全部">全部</option>
+                        <option value="美国">美国</option>
+                        <option value="英国">英国</option>
+                    </select>
+                </div>
+
+                <span style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">&nbsp;QS世界排名：</span>
+                <div class="form-group" style="width: 300px">
+                    <select id="select_qs_low" class="form-control">
+                        <!-- for循环 -->
+                        {for start='1' end='141'}
+                        <option value={$i}>{$i}</option>
+                        {/for}
+                    </select>
+                    <span class="glyphicon glyphicon-minus"></span>
+                    <select id="select_qs_high" class="form-control">
+                        <!-- for循环 -->
+                        {for start='1' end='141'}
+                        <option value={$i}>{$i}</option>
+                        {/for}
+                    </select>
+                    <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">名</span>
+                </div>
+
+                <span style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">本国排名：</span>
+                <div class="form-group" style="width: 300px">
+                    <select id="select_major_low" class="form-control">
+                        <!-- for循环 -->
+                        {for start='1' end='141'}
+                        <option value={$i}>{$i}</option>
+                        {/for}
+                    </select>
+                    <span class="glyphicon glyphicon-minus"></span>
+                    <select id="select_major_high" class="form-control">
+                        <!-- for循环 -->
+                        {for start='1' end='141'}
+                        <option value={$i}>{$i}</option>
+                        {/for}
+                    </select>
+                    <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">名</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 122px; float:right">
+                    <i class="fa fa-search" aria-hidden="true"></i>&nbsp&nbsp确定</button>
+            </form>
         </div>
-
-        <span class="order_new" style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">&nbsp;QS世界排名：</span>
-        <div class="form-group" style="width: 300px">
-            <select id="select_qs_low" class="form-control col-md-4 m-2">
-                <!-- for循环 -->
-                {for start='1' end='141'}
-                <option value={$i}>{$i}</option>
-                {/for}
-            </select>
-            <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">-</span>
-            <select id="select_qs_high" class="form-control col-md-4 m-2">
-                <!-- for循环 -->
-                {for start='1' end='141'}
-                <option value={$i}>{$i}</option>
-                {/for}
-            </select>
-            <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">名</span>
-        </div>
-
-        <span class="order_new" style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">本国排名：</span>
-        <div class="form-group" style="width: 300px">
-            <select id="select_major_low" class="form-control col-md-4 m-2">
-                <!-- for循环 -->
-                {for start='1' end='141'}
-                <option value={$i}>{$i}</option>
-                {/for}
-            </select>
-            <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">-</span>
-            <select id="select_major_high" class="form-control col-md-4 m-2">
-                <!-- for循环 -->
-                {for start='1' end='141'}
-                <option value={$i}>{$i}</option>
-                {/for}
-            </select>
-            <span style="font-family:宋体;color:#000000;font-weight:bold;font-size:10.5000pt;">名</span>
-        </div>
-
-        <input type="submit" class="btn btn-primary" value="确定">
-    </form>
-
-    <div  id='user' style='font-family: 微软雅黑;color: #666;font-size: 12px;'>
-        <table width="" border="0" cellpadding="0" cellspacing="0" class="yuanxiao-table">
+        <div style='font-family: 微软雅黑;color: #666;font-size: 12px;'>
+            <table width="" border="0" cellpadding="0" cellspacing="0" class="yuanxiao-table">
             <!-- foreach循环 -->
             {foreach name="college" item="value"}
             <tr>
@@ -70,27 +72,44 @@
                     </a>
                 </td>
                 <td width="150">
-                    <span>QS世界排名：<em>{$value.world_rank}</em></span>
-                    <span>{$value.major_rank_name}：<em>{$value.major_rank}</em></span>
+                    <span>QS世界排名：{$value.world_rank}</span>
+                    <span>{$value.major_rank_name}：{$value.major_rank}</span>
                 </td>
                 <td width="150">
-                    <span>录取率：<em>{if $value.rate !=='--'} {$value.rate}% {else /}暂无 {/if}</em></span>
-                    <span>热门专业：<em>{if $value.hot_major !=='--'} {$value.hot_major} {else /}暂无 {/if}</em></span>
+                    <span>录取率：{if $value.rate !=='--'} {$value.rate}% {else /}暂无 {/if}</span>
+                    <span>热门专业：{if $value.hot_major !=='--'} {$value.hot_major} {else /}暂无 {/if}</span>
                 </td>
                 <td width="195">
                 </td>
                 <td width="150">
-                    <span>国家：<em>{$value.country}</em></span>
-                    <span class="region">地区：<em>{$value.area}</em></span>
+                    <span>国家：{$value.country}</span>
+                    <span class="region">地区：{$value.area}</span>
                 </td>
             </tr>
             {/foreach}
         </table>
+        </div>
     </div>
-
 </div>
 
-
+<style>
+    .yuanxiao-table{ margin-top: 20px; border-top: solid 1px #e5e5e5;}
+    .yuanxiao-table tr td{ border-bottom: solid 1px #e5e5e5; padding:8px 0 28px 0;}
+    .yuanxiao-table tr td .school-img { display: block; margin-top: 20px;}
+    .yuanxiao-table tr td .school-img i{ display: block; width:213px ; height: 54px; border: solid 1px #f1f1f1; float: left; background: #fff;}
+    .yuanxiao-table tr td .school-img i img{ margin: 4px auto; display: block;}
+    .yuanxiao-table tr td .school-img .txt{ float: left; margin-left: 10px;}
+    .yuanxiao-table tr td .school-img .txt b{ font-size: 16px; color: #333; display: block; margin-top: 4px;}
+    .yuanxiao-table tr td .school-img .txt span{ font-family: 'Arial'; margin-top: 12px; display: block;}
+    .yuanxiao-table tr td span{ display: block; color: #666; margin-top: 20px;}
+    .yuanxiao-table tr td span em{ color: #333;}
+    .yuanxiao-table tr td:first-child .school-img{ margin-left: 10px;}
+    span.region{ position: relative; cursor: pointer;}
+    span.region img{ position: absolute; width: 200px; height: 270px; top: -275px; right: 6px; display: none;}
+    span.region:hover img{ display: block;}
+    .yuanxiao-table tr:hover td{ background: #f2f9ff}
+    .yuanxiao-table tr td.no span{ display: none;}
+</style>
 
 <script>
     $('form').submit(function () {
@@ -124,11 +143,31 @@
     }
 
     window.onload=function(){
-        $("#select_country").val($.cookie('country'));
-        $("#select_qs_low").val($.cookie('qsLow'));
-        $("#select_qs_high").val($.cookie('qsHigh'));
-        $("#select_major_low").val($.cookie('majorLow'));
-        $("#select_major_high").val($.cookie('majorHigh'));
+        if($.cookie('country')!=null){
+            $("#select_country").val($.cookie('country'));
+        }else{
+            $("#select_country").val("全部");
+        }
+        if($.cookie('qsLow')!=null){
+            $("#select_qs_low").val($.cookie('qsLow'));
+        }else{
+            $("#select_qs_low").val("1");
+        }
+        if($.cookie('qsHigh')!=null){
+            $("#select_qs_high").val($.cookie('qsHigh'));
+        }else{
+            $("#select_qs_high").val("140");
+        }
+        if($.cookie('majorLow')!=null){
+            $("#select_major_low").val($.cookie('majorLow'));
+        }else{
+            $("#select_major_low").val("1");
+        }
+        if($.cookie('majorHigh')!=null){
+            $("#select_major_high").val($.cookie('majorHigh'));
+        }else{
+            $("#select_major_high").val("140");
+        }
     };
 </script>
 

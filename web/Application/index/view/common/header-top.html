@@ -1,86 +1,79 @@
-<!--投诉弹框-->
-<div class="tan-bg"></div>
-<div class="ren-tan">
-    <div class="tan-con">
-        <div class="tit clearfix">
-            <h3>我要投诉</h3>
-            <b class="close">X</b>
-        </div>
-        <div class="conter">
-            <p>亲爱的用户，欢迎在下方填写您遇到的问题或意见建议。</p>
-            <textarea name="tsnr" cols="" rows="">详尽的描述问题更有利于我们为您解答哦~</textarea>
-            <div class="form-item">
-                <span>邮箱：</span>
-                <input type="text" name="email" class="txt" />
+<div style="height:52px; font-family: 楷体; font-size: 20px; background: black">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-inverse" role="navigation">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="__PUBLIC__/index.php/index/login_or_register/login">登录</a>
+                            </li>
+                            <li>
+                                <a href="__PUBLIC__/index.php/index/login_or_register/register">注册</a>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#myModal">投诉</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
             </div>
-            <div class="form-item">
-                <span>电话：</span>
-                <input type="text" name="phone" class="txt" />
-            </div>
-            <em>留下其中一个联系方式，更方便我们联系您</em>
-            <input type="button" value="提交" class="btn" id="btnfon" />
         </div>
     </div>
 </div>
 
-<div class="header-top">
-    <div class="HTML-con clearfix">
-        <!--登录前-->
-        <div class="fr header-list">
-            <a href="__PUBLIC__/index.php/index/login_or_register/login">登录</a>
-            <a href="__PUBLIC__/index.php/index/login_or_register/register">注册</a>
-            <a href="javascript:" class="tousu">投诉</a>
-        </div>
-
-        <!--&lt;!&ndash;登录后&ndash;&gt;-->
-        <!--<div class="fr header-list header-list2">-->
-        <!--<div class="denglu-h" style="width:225px;height:40px;">-->
-
-        <!--<img src="http://thirdwx.qlogo.cn/mmopen/vi_32/Pbu0icVZf2Py83NcwyvxCmicVrWKibhzPWyzQDkezXtW9gvy2YyCVqSJeuypA96PJ1jQF2UUVRT7ibeX7n7sPAb6BQ/132" style="width:23px;height:23px;float:left;margin-top:6px;"/>-->
-        <!--<span class="fl" style="width: 80px;overflow: hidden;height: 25px;">剑眉枉凝</span>-->
-        <!--<a href="/index.php/user/grzl.html" class="fl" style=" margin-left:6px;display:block; width:75px; height:25px; background:#252885; color:#fff; line-height:25px; text-align:center; margin-top:5px; position:relative;">个人中心</a>-->
-        <!--<div class="denglu-hover" style="width:225px;">-->
-        <!--<a href="/index.php/user/grzl.html">· 个人资料</a>-->
-        <!--<a href="/index.php/plan/beixuan.html">· 我的备选</a>-->
-        <!--<a href="/index.php/plan/pinggubg.html">· 评估报告</a>-->
-        <!--<a href="/index.php/user/dstate/isbook/3.html">· 订单跟踪</a>-->
-        <!--<a href="/index.php/user/shenqzl.html">· 申请资料</a>-->
-        <!--<a href="/index.php/user/xgpwd.html">· 修改密码</a>-->
-        <!--<a href="/index.php/user/noticen.html" style="position:relative;">· 通知</a>-->
-        <!--<a href="javascript:;" id="quit">· 退出</a>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<a href="javascript:;" class="tousu">投诉</a>-->
-        <!--</div>-->
-    </div>
+<!-- 投诉框 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    我要投诉<br>
+                    <small>亲爱的用户，欢迎在下方填写您遇到的问题或意见建议。</small>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" rows="7" placeholder="详尽的描述问题更有利于我们为您解答哦~"></textarea>
+                <div class="input-group margin-bottom-sm">
+                    <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                    <input class="form-control" type="text" placeholder="您的邮箱地址">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-mobile fa-fw"></i></span>
+                    <input class="form-control" type="text" placeholder="您的手机号">
+                </div>
+                <em>留下其中一个联系方式，更方便我们联系您</em>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
-
-<script>
-    $('a.tousu').click(function(){
-        $('.tan-bg').fadeIn(800);
-        $('.ren-tan').fadeIn(800);
-    })
-    $('b.close').click(function(){
-        $('.tan-bg').fadeOut(800);
-        $('.ren-tan').fadeOut(800);
-    })
-</script>
 
 <script>
     $(function () {
         $("#btnfon").click(function () {
-            var tsnr= $("textarea[name='tsnr']").val();
-            var email= $("input[name='email']").val();
-            var phone=$("input[name='phone']").val();
+            var tsnr = $("textarea[name='tsnr']").val();
+            var email = $("input[name='email']").val();
+            var phone = $("input[name='phone']").val();
             var pattern = /^1[34578]\d{9}$/;
-            var isphone=pattern.test(phone);
-            if(!isphone){
+            var isphone = pattern.test(phone);
+            if (!isphone) {
                 layer.msg('请输入正确的手机号码');
                 return false;
             }
-            var re=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-            var a=re.test(email);
-            if(!a){
+            var re = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            var a = re.test(email);
+            if (!a) {
                 layer.msg('邮箱格式不正确！');
                 return false;
             }
@@ -90,12 +83,12 @@
                 url: "{:url('checkLogin')}", //登录处理页
                 type: "POST",
                 //传送请求数据
-                data:{tsnr:tsnr,email:email,phone:phone},
+                data: {tsnr: tsnr, email: email, phone: phone},
                 success: function (fstart) { //登录成功后返回的数据
                     //根据返回值进行状态显示
                     if (fstart === "1") {
                         layer.msg('投诉成功，谢谢您的意见建议！');
-                    }else if(fstart === "3"){
+                    } else if (fstart === "3") {
                         layer.msg('您尚未登录，请先登录！');
                         location.href = "/index.php/public/login.html";
                     }
@@ -111,10 +104,10 @@
 
 <script type="text/javascript">
     $(function () {
-        $("#quit").click(function () { //“注册”按钮单击事件
+        $("#quit").click(function () {
             $.ajax
             ({ //请求登录处理页
-                url: "/index.php/public/quit.html", //登录处理页
+                url: "/index.php/public/quit.html",
                 type: "POST",
                 //传送请求数据
                 // data: { account: account, password: password,verify: verify },
@@ -125,7 +118,6 @@
                         alert('退出成功！');
                         location.href = "__PUBLIC__/index.php";
                     }
-
                 }
             })
         })

@@ -1,213 +1,171 @@
 {extend name="common/common" /}
 
 {block name="body"}
-<div class="banner-box HTML-con clearfix">
-    <ul class="banner-l fl">
-        <li class="icon1"><a href="/index.php/free/select.html" style="color:darkorange;"><b></b>学霸院校</a></li>
-        <li class="icon2"><a href="/index.php/free/more.html" style="color:darkorange;"><b></b>方案评估</a></li>
-        <li class="icon3"><a href="/index.php/free/study.html" style="color:darkorange;"><b></b>美国院校</a></li>
-        <li class="icon4"><a href="/index.php/free/spring.html" style="color:darkorange;"><b></b>英国院校</a></li>
-        <li class="icon5"><a href="/index.php/free/yuke.html" style="color:darkorange;"><b></b>出国指南</a></li>
-        <li class="icon6"><a href="/index.php/free/three.html" style="color:darkorange;"><b></b>论坛交流</a></li>
-    </ul>
-
-    <div id="fsD1" class="focus">
-        <div id="D1pic1" class="fPic">
-            <div class="fcon" style="display: none;">
-                <a target="_blank" href="/index.php/cate/listd/id/187.html"><img src="__IMG__/slide/slide1.png" style="opacity: 1; "></a>
-            </div><div class="fcon" style="display: none;">
-            <a target="_blank" href="/index.php/plan/index.html"><img src="__IMG__/slide/slide2.png" style="opacity: 1; "></a>
-        </div><div class="fcon" style="display: none;">
-            <a target="_blank" href="/index.php/free/more.html"><img src="__IMG__/slide/slide3.png" style="opacity: 1; "></a>
-        </div><div class="fcon" style="display: none;">
-            <a target="_blank" href="/index.php/free/select.html"><img src="__IMG__/slide/slide4.png" style="opacity: 1; "></a>
-        </div><div class="fcon" style="display: none;">
-            <a target="_blank" href="/index.php/card/index.html"><img src="__IMG__/slide/slide5.png" style="opacity: 1; "></a>
-        </div><div class="fcon" style="display: none;">
-            <a target="_blank" href="/index.php/book/index.html"><img src="__IMG__/slide/slide6.png" style="opacity: 1; "></a>
-        </div>		</div>
-        <div class="fbg">
-            <div class="D1fBt" id="D1fBt">
-                <a href="javascript:void(0)" hidefocus="true" target="_self" class=""class="current"><i>1</i></a><a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>2</i></a><a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>3</i></a><a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>4</i></a><a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>5</i></a><a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>6</i></a>
+<div class="container" style="margin-bottom: 20px">
+    <div class="row clearfix">
+        <div class="col-md-2 column pull-left" style="width: border-box">
+            <a href="{:url('index/school/index')}?qsHigh=10" class="list-group-item listItem">学霸院校</a>
+            <a href="#" class="list-group-item listItem">方案评估</a>
+            <a href="{:url('index/school/index')}?country=美国" class="list-group-item listItem">美国院校</a>
+            <a href="{:url('index/school/index')}?country=英国" class="list-group-item listItem">英国院校</a>
+            <a href="{:url('index/detail/xingqian')}" class="list-group-item listItem">出国指南</a>
+            <a href="#" class="list-group-item listItem">论坛交流</a>
+        </div>
+        <div class="col-md-10 column pull-right">
+            <div class="carousel slide" id="carousel-931159">
+                <ol class="carousel-indicators">
+                    <li data-slide-to="0" data-target="#carousel-931159">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-931159">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-931159">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img alt="" src="__IMG__/slide/slide1.png" style="width: 960px; height: 402px"/>
+                        <div class="carousel-caption">
+                            <h4>
+                                麻省理工学院
+                            </h4>
+                            <p>
+                                麻省理工学院（Massachusetts Institute of
+                                Technology，缩写MIT）成立于1861年，位于美国马萨诸塞州波士顿附近的剑桥市，其吉祥物为海狸，代表动物界最擅长筑水坝的工程师。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="__IMG__/slide/slide2.png" style="width: 960px; height: 402px"/>
+                        <div class="carousel-caption">
+                            <h4>
+                                斯坦福大学
+                            </h4>
+                            <p>
+                                斯坦福大学（Stanford University），或作“史丹福大学”，全称“小利兰·斯坦福大学（Leland Stanford Junior
+                                University）”，美国加利福尼亚州斯坦福市的私立研究型大学。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="__IMG__/slide/slide3.png" style="width: 960px; height: 402px"/>
+                        <div class="carousel-caption">
+                            <h4>
+                                哈佛大学
+                            </h4>
+                            <p>
+                                哈佛大学（Harvard
+                                University）成立于1636年，是北美第一所，也是英语世界第六所高等学府，位于美国东部小城剑桥市，临近波士顿，是美国八所常春藤盟校之一，被誉为是世界高等学府的典范。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#carousel-931159" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-931159" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
-        <span class="prev"></span>
-        <span class="next"></span>
     </div>
-
-</div>
-<div class="con-box">
-    <div class="con">
-        <a href="__PUBLIC__/index.php/index/detail/xingqian">
-            <div class="con-nr x1 x2">
-            <div class="con-nr-img">
-                <img src="__IMG__/square/xingqian1.png" class="show unb">
-                <img src="__IMG__/square/xingqian2.png" class="hide unb1">
-            </div>
-            <div class="con-nr-bt">
-                <p class="nb">行前准备</p>
-            </div>
-            <div class="con-nr-text" style="color:black;">
-                老司机详解，你一定用得到的行前准备知识...<br/>
-            </div>
-        </div>
-        </a>
-        <a href="__PUBLIC__/index.php/index/detail/xuexi">
-        <div class="con-nr x2">
-            <div class="con-nr-img">
-                <img src="__IMG__/square/shiyong1.png" class="show unb">
-                <img src="__IMG__/square/shiyong2.png" class="hide unb1">
-            </div>
-            <div class="con-nr-bt">
-                <p class="nb">学习指南</p>
-            </div>
-            <div class="con-nr-text"  style="color:black;">
-                到了外国不会做课堂笔记，害怕做公共演讲，小组讨论插不上话？点进来看看前辈的经验提前适应...
-            </div>
-        </div>
-    </a>
-        <a href="__PUBLIC__/index.php/index/detail/kecheng">
-            <div class="con-nr x1">
-            <div class="con-nr-img">
-                <img src="__IMG__/square/xueshu1.png" class="show unb">
-                <img src="__IMG__/square/xueshu2.png" class="hide unb1">
-            </div>
-            <div class="con-nr-bt">
-                <p class="nb">课程对照</p>
-            </div>
-            <div class="con-nr-text" style="color:black;">
-                选课时看着英语发愁？英汉对照表在此...
-            </div>
-        </div>
-        </a>
-        <a href="__PUBLIC__/index.php/index/detail/gonggong">
-            <div class="con-nr x1">
-            <div class="con-nr-img">
-                <img src="__IMG__/square/wenhua1.png" class="show unb">
-                <img src="__IMG__/square/wenhua2.png" class="hide unb1">
-            </div>
-            <div class="con-nr-bt">
-                <p class="nb">公共用语</p>
-            </div>
-            <div class="con-nr-text" style="color:black;">
-                雅思托福考得不错，可现实生活中却依然张不开嘴？<br/>
-                学会公共用语帮你迅速融入留学生活...
-            </div>
-        </div>
-        </a>
-    </div>
-    <style>
-        .footer-top .lx {
-            width: 200px;
-            padding-left: 103px;
-        }
-
-
-        .focus{ position:relative; width:968px; height:385px; background-color: #000; float: right;}
-        .focus img{ width: 968px; height: 385px;}
-        .focus .btn{ position:absolute; bottom:34px; left:510px; overflow:hidden; zoom:1;}
-        .focus .btn a{position:relative; display:inline; width:13px; height:13px; border-radius:7px; margin:0 5px;color:#B0B0B0;font:12px/15px "5B8B4F53"; text-decoration:none; text-align:center; outline:0; float:left; background:#D9D9D9; }
-        .focus .btn a:hover,.focus .btn a.current{  cursor:pointer;background:#fc114a;}
-        .focus .fPic{ position:absolute; left:0px; top:0px; }
-        .focus .D1fBt{ overflow:hidden; zoom:1;  height:16px; z-index:10;  }
-        .focus .shadow{ width:100%; position:absolute; bottom:0; left:0px; z-index:10; height:80px; line-height: 80px; background:rgba(0,0,0,0.6);
-            filter:progid:DXImageTransform.Microsoft.gradient( GradientType = 0,startColorstr = '#80000000',endColorstr = '#80000000')\9;  display:block;  text-align:left; }
-        .focus .shadow a{ text-decoration:none; color:#fff; font-size:20px; overflow:hidden; margin-left:10px; font-family: "\5FAE\8F6F\96C5\9ED1";}
-        .focus .fcon{ position:relative; width:100%; float:left;  display:none; background:#000  }
-        .focus .fcon img{ display:block; }
-        .focus .fbg{bottom:25px; left:46%; position:absolute; height:21px; text-align:center; z-index: 200; }
-        .focus .fbg div{ height:21px; z-index:10;background-color:#000; filter:alpha(opacity=30); opacity:0.3; padding: 0 9px 0 4px ; border-radius: 15px; text-align: center;}
-        .focus .D1fBt a{width:10px; height:10px; margin:3px 0 0 5px; border-radius:10px; background:#fff; display: inline-block; border: solid 2px #fff;font:12px/15px "5B8B4F53"; text-decoration:none; text-align:center; outline:0; float:left; }
-        .focus .D1fBt .current,.focus .D1fBt a:hover{ border: solid 2px #fff; background: none;}
-        .focus .D1fBt img{display:none}
-        .focus .D1fBt i{display:none; font-style:normal; }
-        .hide{
-            display: none;
-        }
-        .con-box{
-            width:100%;
-            padding:40px 0;
-            background:white;
-            margin-top: 25px;
-        }
-        .con{
-            margin:0 auto;
-            width:1200px;
-            overflow: hidden;
-        }
-        .con .con-nr{
-            float:left;
-            width:286px;
-            height:356px;
-            background:#f9f9fd;
-        }
-        .con .x1{
-            margin-right: 15px;
-        }
-        .con .x2{
-            margin-bottom: 18px;
-        }
-        .con-nr-img{
-            padding-top:20px;
-            width:286px;
-            height:140px;
-            overflow:hidden;
-            text-align: center;
-        }
-        .con-nr-bt{
-            width:280px;
-            height:55px;
-        }
-        .con-nr-bt p{
-            width:280px;
-            height:55px;
-            line-height: 55px;
-            text-align:center;
-            font-size: 15px;
-            color:#494949;
-        }
-        .con-nr-text{
-            margin: 0 auto;
-            width:190px;
-            height:100px;
-            font-size:12px;
-            line-height:25px;
-            text-align:center;
-        }
-        .bs{
-            color:#252885;
-        }
-    </style>
 </div>
 
-<script type="text/javascript">
-    Qfast.add('widgets', { path: "__JS__/terminator2.2.min.js", type: "js", requires: ['fx'] });
-    Qfast(false, 'widgets', function () {
-        K.tabs({
-            id: 'fsD1',   //焦点图包裹id
-            conId: "D1pic1",  //** 大图域包裹id
-            tabId:"D1fBt",
-            tabTn:"a",
-            conCn: '.fcon', //** 大图域配置class
-            auto: 1,   //自动播放 1或0
-            effect: 'fade',   //效果配置
-            eType: 'click', //** 鼠标事件
-            pageBt:true,//是否有按钮切换页码
-            bns: ['.prev', '.next'],//** 前后按钮配置class
-            interval: 5000  //** 停顿时间
-        })
-    })
-</script>
-<script type="text/javascript">
-    $(".con").on("mouseover",".con-nr",function(){
-        $(this).find(".show").hide();
-        $(this).find(".hide").show();
-        $(this).find(".nb").css("color","#252885");
-    })
-    $(".con").on("mouseleave",".con-nr",function(){
-        $(this).find(".show").show();
-        $(this).find(".hide").hide();
-        $(this).find(".nb").css("color","#494949");
-    })
+<div style="background: #f9f9fd">
+    <div class="container">
+    <div class="row clearfix">
+        <a href="{:url('detail/xingqian')}">
+            <div id="xingqian" class="col-md-3 column box" style="color:black">
+                <img id="xingqianimg" src="__IMG__/square/xingqian1.png" style="width:100%"/>
+                <h3 class="text-center" style="font-family: 楷体">
+                    行前准备
+                </h3>
+                <p class="text-center">
+                    老司机详解，你一定用得到的行前准备知识...
+                </p>
+            </div>
+        </a>
+        <a href="{:url('detail/xuexi')}">
+            <div id="xuexi" class="col-md-3 column box" style="color:black">
+                <img id="xuexiimg" src="__IMG__/square/xuexi1.png" style="width:100%"/>
+                <h3 class="text-center" style="font-family: 楷体">
+                    学习指南
+                </h3>
+                <p class="text-center">
+                    到了外国不会做课堂笔记，害怕做公共演讲，小组讨论插不上话？点进来看看前辈的经验提前适应...
+                </p>
+            </div>
+        </a>
+        <a href="{:url('detail/kecheng')}">
+            <div id="kecheng" class="col-md-3 column box" style="color:black">
+                <img id="kechengimg" src="__IMG__/square/xuexi1.png" style="width:100%"/>
+                <h3 class="text-center" style="font-family: 楷体">
+                    课程对照
+                </h3>
+                <p class="text-center">
+                    选课时看着英语发愁？英汉对照表在此...
+                </p>
+            </div>
+        </a>
+        <a href="{:url('detail/gonggong')}">
+            <div id="gonggong" class="col-md-3 column box" style="color:black">
+                <img id="gongongimg" src="__IMG__/square/gonggong1.png" style="width:100%"/>
+                <h3 class="text-center" style="font-family: 楷体">
+                    公共用语
+                </h3>
+                <p class="text-center">
+                    雅思托福考得不错，可现实生活中却依然张不开嘴？
+                    学会公共用语帮你迅速融入留学生活...
+                </p>
+            </div>
+        </a>
+    </div>
+</div>
+</div>
+<style>
+    .listItem {
+        font-family: 楷体;
+        height: 68px;
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .box {
+        height: 356px;
+        background: #f9f9fd;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $("#xingqian").mouseover(function () {
+            $("#xingqianimg").attr("src", "__IMG__/square/xingqian2.png");
+        });
+        $("#xingqian").mouseleave(function () {
+            $("#xingqianimg").attr("src", "__IMG__/square/xingqian1.png");
+        });
+        $("#xuexi").mouseover(function () {
+            $("#xuexiimg").attr("src", "__IMG__/square/xuexi2.png");
+        });
+        $("#xuexi").mouseleave(function () {
+            $("#xuexiimg").attr("src", "__IMG__/square/xuexi1.png");
+        });
+        $("#kecheng").mouseover(function () {
+            $("#kechengimg").attr("src", "__IMG__/square/kecheng2.png");
+        });
+        $("#kecheng").mouseleave(function () {
+            $("#kechengimg").attr("src", "__IMG__/square/kecheng1.png");
+        });
+        $("#gonggong").mouseover(function () {
+            $("#gongongimg").attr("src", "__IMG__/square/gonggong2.png");
+        });
+        $("#gonggong").mouseleave(function () {
+            $("#gongongimg").attr("src", "__IMG__/square/gonggong1.png");
+        });
+    });
 </script>
 {/block}

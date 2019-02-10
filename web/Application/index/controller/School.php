@@ -19,12 +19,6 @@ class School extends Controller
     {
         $this->assign('title',"院校自选");
 
-        $country=input('country');
-        $qsLow=input('qsLow');
-        $qsHigh=input('qsHigh');
-        $majorLow=input('majorLow');
-        $majorHigh=input('majorHigh');
-
         $map=[];
 
         $map[0] = ['world_rank','between',[(int)$qsLow, (int)$qsHigh]];

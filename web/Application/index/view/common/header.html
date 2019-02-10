@@ -1,70 +1,24 @@
-<div class="header">  <!--和个人中心的不一样-->
-    <div class="HTML-con clearfix">
-        <h1 class="logo fl"><a href="__PUBLIC__/index.php"><img src="__IMG__/index_logo.png" /></a></h1>
-        <form class="search fr" method="get" action="/index.php/public/sousuo.html">
-            <input name="sousuo" type="tetx" placeholder="搜索你感兴趣的学校" value="" class="txt qsvrt" />
-            <div class="sou-search" id="insqas" style="display:none;"></div>
-            <input type="submit" value="搜索" class="search-but" />
-        </form>
+<div class="container" style="margin-bottom: 20px">
+    <div class="row clearfix">
+        <div class="col-md-6 column">
+            <a href="__PUBLIC__/index.php"><img src="__IMG__/index_logo.png" /></a>
+        </div>
+        <div class="col-md-6 column">
+            <form class="form-inline" role="form" id="form">
+                <div class="form-group pull-right">
+                    <input id="sousuo" class="form-control input-lg" placeholder="搜索你感兴趣的学校" style="margin-top: 18px;">
+                    <button type="submit" class="btn btn-info btn-lg" style="width: 122px; margin-top: 18px; float:right">
+                        <i class="fa fa-search" aria-hidden="true"></i>&nbsp&nbsp搜索</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<style>
-    .sou-search{position: absolute;
-        width: 485px;
-        border: solid 1px #e5e5e5;
-        top: 122px;
-        z-index: 9;
-        background: #fff;
-    }
-    .sou-search b{display: block;
-        line-height: 26px;
-        font-weight: 100;padding-left:10px;font-size:15px;}
-</style>
-
 <script>
-    //输入学校名提示 搜索
-    $('.qsvrt').keyup(function(){
-        var val = $(this).val();
-        var obj = $(this);
-        //var index=$(this).next().val();
-        obj.next().html('');
-        if(val == ''){
-            $(this).next().css('display','none');
-        }else{
-            $(this).next().css('display','block');
-            //查询
-            $.ajax({
-                url:"/index.php/public/suoajax.html",
-                type:'post',
-                data:{val:val},
-                success:function(data){
-                    obj.next().html();
-                    obj.next().append(data.info);
-                    $('.bclick').hover(function(){
-                        $(this).css('background-color','#ccc')
-                    },function(){
-                        $(this).css('background-color','')
-                    })
-                    $('.bclick').click(function(){
-                        var objs = $(this)
-                        var val  = $(this).html();
-                        // major(val,index);
-                        var id   = $(this).attr('k');
-                        // $(this).parent().prev().val(id)
-                        $(this).parent().prev().val(val);
-                        $(this).parent().css('display','none');
-                    });
-                },
-            })
-        }
+    $('form').submit(function () {
+        var sousuo=$("#sousuo").val();
+        window.location.href="{:url('index')}"+'?like='+sousuo;
+        return false;
     });
-
-    $(document).on('click', function(e){
-        if(e.target.parentNode.id != 'menu'){
-            $(".abc").next().next().next().hide();
-            $(".bcd").next().next().next().hide();
-        }
-    });
-
 </script>
