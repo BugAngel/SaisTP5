@@ -2,17 +2,30 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2018/12/25
- * Time: 0:16
+ * Date: 2019/2/11/011
+ * Time: 18:14
  */
 
-use think\Controller;
+namespace app\index\controller;
 
-class Base extends Controller {
-    public function _initialize(){
-        if(!isset($_SESSION['id']) || !isset($_SESSION['account'])){
-            $this->redirect("LoginOrRegister/login");
+use think\Controller;
+use think\facade\Session;
+use app\index\model\User;
+
+class Base extends Controller
+{
+    public function initialize(){
+        if(!Session::has('id') || !Session::has('account')){
+            $login_res= '2';
+        }else{
+            $login_res= '1';
+        }
+        $this->assign('login_res',$login_res);
+        if($login_res==='1'){
+            $account=session('account');
+            $user = User::get(['account' => $account]);
+            $login_nickname=$user->nickname;
+            $this->assign('login_nickname',$login_nickname);
         }
     }
-
 }

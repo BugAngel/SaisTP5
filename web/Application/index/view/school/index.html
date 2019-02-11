@@ -9,9 +9,9 @@
                 <span style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">国家：</span>
                 <div class="form-group" style="width: 150px">
                     <select id="select_country" class="form-control">
-                        <option value="全部">全部</option>
-                        <option value="美国">美国</option>
-                        <option value="英国">英国</option>
+                        <option value="all">全部</option>
+                        <option value="US">美国</option>
+                        <option value="UK">英国</option>
                     </select>
                 </div>
 
@@ -142,7 +142,19 @@
         $.cookie('majorHigh', majorHighValue);
     }
 
+    function GetRequest() {
+        var url = window.location.search; //获取url中"?"符后的字串
+        if (url.indexOf("?") !== -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for ( var i = 0; i < strs.length; i++) {
+                $.cookie(strs[i].split("=")[0], strs[i].split("=")[1]);
+            }
+        }
+    }
+
     window.onload=function(){
+        GetRequest();
         if($.cookie('country')!=null){
             $("#select_country").val($.cookie('country'));
         }else{

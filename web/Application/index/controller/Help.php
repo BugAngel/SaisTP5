@@ -9,9 +9,8 @@
 namespace app\index\controller;
 
 
-use think\Controller;
 
-class Help extends Controller
+class Help extends Base
 {
     public function method()
     {

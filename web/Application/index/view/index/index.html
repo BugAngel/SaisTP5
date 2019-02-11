@@ -3,13 +3,27 @@
 {block name="body"}
 <div class="container" style="margin-bottom: 20px">
     <div class="row clearfix">
-        <div class="col-md-2 column pull-left" style="width: border-box">
-            <a href="{:url('index/school/index')}?qsHigh=10" class="list-group-item listItem">学霸院校</a>
-            <a href="#" class="list-group-item listItem">方案评估</a>
-            <a href="{:url('index/school/index')}?country=美国" class="list-group-item listItem">美国院校</a>
-            <a href="{:url('index/school/index')}?country=英国" class="list-group-item listItem">英国院校</a>
-            <a href="{:url('index/detail/xingqian')}" class="list-group-item listItem">出国指南</a>
-            <a href="#" class="list-group-item listItem">论坛交流</a>
+        <div class="col-md-2 column pull-left" style="font-family: 楷体;font-size: 25px">
+            <div class="list-group">
+                <a href="__PUBLIC__/index.php/index/school/index?country=all&qsLow=1&qsHigh=10&majorLow=1&majorHigh=10" class="list-group-item" style="height: 67px">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>学霸院校
+                </a>
+                <a href="#" class="list-group-item"  style="height: 67px">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>方案评估
+                </a>
+                <a href="__PUBLIC__/index.php/index/school/index?country=US&qsLow=1&qsHigh=140&majorLow=1&majorHigh=140" class="list-group-item" style="height: 67px">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>美国院校
+                </a>
+                <a href="__PUBLIC__/index.php/index/school/index?country=UK&qsLow=1&qsHigh=140&majorLow=1&majorHigh=140" class="list-group-item" style="height: 67px">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>英国院校
+                </a>
+                <a href="__PUBLIC__/index.php/index/detail/xingqian" class="list-group-item" style="height: 67px">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>出国指南
+                </a>
+                <a href="#" class="list-group-item" style="height: 67px">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>论坛交流
+                </a>
+            </div>
         </div>
         <div class="col-md-10 column pull-right">
             <div class="carousel slide" id="carousel-931159">
@@ -78,7 +92,7 @@
         <a href="{:url('detail/xingqian')}">
             <div id="xingqian" class="col-md-3 column box" style="color:black">
                 <img id="xingqianimg" src="__IMG__/square/xingqian1.png" style="width:100%"/>
-                <h3 class="text-center" style="font-family: 楷体">
+                <h3 class="text-center" style="font-family: 楷体;">
                     行前准备
                 </h3>
                 <p class="text-center">
@@ -89,7 +103,7 @@
         <a href="{:url('detail/xuexi')}">
             <div id="xuexi" class="col-md-3 column box" style="color:black">
                 <img id="xuexiimg" src="__IMG__/square/xuexi1.png" style="width:100%"/>
-                <h3 class="text-center" style="font-family: 楷体">
+                <h3 class="text-center" style="font-family: 楷体;">
                     学习指南
                 </h3>
                 <p class="text-center">
@@ -99,8 +113,8 @@
         </a>
         <a href="{:url('detail/kecheng')}">
             <div id="kecheng" class="col-md-3 column box" style="color:black">
-                <img id="kechengimg" src="__IMG__/square/xuexi1.png" style="width:100%"/>
-                <h3 class="text-center" style="font-family: 楷体">
+                <img id="kechengimg" src="__IMG__/square/kecheng1.png" style="width:100%"/>
+                <h3 class="text-center" style="font-family: 楷体;">
                     课程对照
                 </h3>
                 <p class="text-center">
@@ -111,7 +125,7 @@
         <a href="{:url('detail/gonggong')}">
             <div id="gonggong" class="col-md-3 column box" style="color:black">
                 <img id="gongongimg" src="__IMG__/square/gonggong1.png" style="width:100%"/>
-                <h3 class="text-center" style="font-family: 楷体">
+                <h3 class="text-center" style="font-family: 楷体;">
                     公共用语
                 </h3>
                 <p class="text-center">

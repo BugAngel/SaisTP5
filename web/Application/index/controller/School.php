@@ -10,12 +10,10 @@ namespace app\index\controller;
 
 
 use app\index\model\CollegeInfo;
-use think\Controller;
 
-class School extends Controller
+class School extends Base
 {
-
-    public function index($country='全部',$qsLow='1',$qsHigh='150',$majorLow='1',$majorHigh='150')
+    public function index($country='all',$qsLow='1',$qsHigh='150',$majorLow='1',$majorHigh='150')
     {
         $this->assign('title',"院校自选");
 
@@ -23,13 +21,29 @@ class School extends Controller
 
         $map[0] = ['world_rank','between',[(int)$qsLow, (int)$qsHigh]];
         $map[1] = ['major_rank','between',[(int)$majorLow, (int)$majorHigh]];
-        if($country!="全部")
-        {
-            $map[2]=['country','=',$country];
+        if($country=="US"){
+            $map[2]=['country','=',"美国"];
+        }else if($country=="UK"){
+            $map[2]=['country','=',"英国"];
         }
 
         $college = CollegeInfo::all(function($query)use($map){
             $query->where($map)->order('world_rank', 'asc');
+        });
+
+        foreach($college as $k => $v){
+            $college[$k]['hot_major'] = implode("、",$college[$k]['hot_major']);
+        }
+        $this->assign('college',$college);
+        return $this->fetch();
+    }
+
+    public function sousuo($like='')
+    {
+        $this->assign('title',"院校自选");
+
+        $college = CollegeInfo::all(function($query)use($like){
+            $query->where('college_name', 'LIKE', $like)->order('world_rank', 'asc');
         });
 
         foreach($college as $k => $v){

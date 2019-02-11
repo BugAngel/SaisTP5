@@ -41,8 +41,13 @@
 </div>
 
 <script>
-    //检验用户名格式
+    //检验账号格式
     function checkname(name) {
+        var reg = /^[A-Za-z0-9]+$/;
+        if (!reg.test(name)) {
+            layer.msg( "用户名应由数字和26个英文字母组成");
+            return false;
+        }
         if (name.length < 5 || name.length > 14) {
             layer.msg( "用户名长度应为5-14个字符");
             return false;
@@ -107,7 +112,7 @@
             success: function (res) {
                 if (res.status) {
                     layer.msg(res.message, {time: 1000}, function () {
-                        window.location.href = "{:url('login')}";
+                        window.location.href = "{:url('index/index')}";
                     });
                 } else {
                     //刷新验证码

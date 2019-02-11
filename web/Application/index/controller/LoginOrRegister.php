@@ -67,10 +67,13 @@ class LoginOrRegister extends Controller
             $user=new User;
             $user->account=$account;
             $user->password=$password;
+            $user->nickname=$account;
             $user->loginip=$this->request->ip();
             $user->save();
             $res['status'] = 1;
             $res['message'] = '注册成功!';
+            session('id', $user->id);     //将id存入session
+            session('account', $user->account); //将account存入session
             return json($res);
         }
     }
@@ -132,8 +135,7 @@ class LoginOrRegister extends Controller
      * 退出
      */
     public function logout(){
-        unset($_SESSION['id']);
-        unset($_SESSION['username']);
-        $this->redirect("login");
+        session(null);
+        $this->redirect("index/index");
     }
 }
