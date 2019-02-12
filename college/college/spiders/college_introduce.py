@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
-from college.items import CollegeInfoItem
+from college.items import CollegeIntroduceItem
 
 
-class CollegeInfoSpider(scrapy.Spider):
+class CollegeIntroduceSpider(scrapy.Spider):
 
-    name = 'college_info'
-    # start_urls = ["http://www.liuxue.com/college/MassachusettsInstituteofTechnology/index/3-9.html"]
+    name = 'college_introduce'
+    # start_urls = ["http://www.liuxue.com/college/TheUniversityofEdinburgh/index/19-4.html"]
     start_urls = ["http://www.liuxue.com/college/MassachusettsInstituteofTechnology/index/3-9.html",
                   "http://www.liuxue.com/college/StanfordUniversity/index/4-9.html",
                   "http://www.liuxue.com/college/HarvardUniversity/index/5-9.html",
@@ -65,37 +65,27 @@ class CollegeInfoSpider(scrapy.Spider):
 
     def parse(self, response):
         college = response.css('.college-desc')
-        rank = response.css('.college-rank')
+        introduce = response.css(".module")
+        num_info = response.xpath("//td//text()").extract()
 
-        item = CollegeInfoItem()  # 实例化item类
+        for index, value in enumerate(num_info):
+            num_info[index] = num_info[index].strip()
+
+        item = CollegeIntroduceItem()  # 实例化item类
 
         item['college_name'] = college.css('.college-name::text').extract_first().strip()
-        item['college_e_name'] = college.css('.college-e-name::text').extract_first().strip()
-        local=college.css('.local span::text').extract_first()
-        item['country'] = local.split()[0]
-        item['world_rank'] = int(rank.css('.world-rank::text').extract_first().strip())
-        item['major_rank_name'] = rank.css('.rank-icon p::text').extract_first()
-        item['icon'] = response.css(".college-badge img::attr(src)").extract_first().split('/')[-1]
-        item['hot_major'] = college.css('.hot-major span::text').extract_first().strip().split('、')
+        item['introduce'] = introduce.css('p::text').extract_first().strip()
+        item['sum']=int(num_info[1].replace(',','').replace('（含全日',''))
+        item['undergraduate'] = int(num_info[3].strip().split('；')[0].replace(',', '').replace('全日制', '').replace(' ',''))
+        item['graduate'] = int(num_info[5].strip().split('；')[0].replace(',', '').replace('全日制', '').replace('；','').replace(' ',''))
+        item['student_staff_ratio'] = float(num_info[7].strip().split('或')[0].split(':')[1])
+        item['undergraduate_international_proportion'] = float(num_info[13].replace('%', '').replace('：', '').replace('约','').replace('；',''))
 
         try:
-            item['major_rank'] = int(rank.css('.major-rank::text').extract_first().strip())
+            item['graduate_international_proportion'] = float(num_info[19].replace('%', ''))
         except:
-            item['major_rank'] = "--"
+            item['graduate_international_proportion'] = "--"
         else:
-            item['major_rank'] = int(rank.css('.major-rank::text').extract_first().strip())
+            item['graduate_international_proportion'] = float(num_info[19].replace('%', ''))
 
-        try:
-            item['area'] = local.split()[1]
-        except:
-            item['area'] = "英格兰"  #赃值处理，就这一个有问题
-        else:
-            item['area'] = local.split()[1].replace("*(1)","")
-
-        try:
-            item['rate'] = float(college.css('.rate span::text').extract_first().strip().replace("约","").strip('%'))
-        except:
-            item['rate'] = "--"
-        else:
-            item['rate'] = float(college.css('.rate span::text').extract_first().strip().replace("约","").strip('%'))
         yield item

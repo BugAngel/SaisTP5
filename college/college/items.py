@@ -26,3 +26,14 @@ class CollegeInfoItem(scrapy.Item):
     icon = scrapy.Field()
     hot_major = scrapy.Field()
 
+
+class CollegeIntroduceItem(scrapy.Item):
+    college_name = scrapy.Field()
+    introduce = scrapy.Field()
+    sum = scrapy.Field()
+    undergraduate = scrapy.Field()
+    graduate = scrapy.Field()
+    student_staff_ratio = scrapy.Field()
+    undergraduate_international_proportion = scrapy.Field()
+    graduate_international_proportion = scrapy.Field()
+

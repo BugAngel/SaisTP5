@@ -18,6 +18,10 @@
 <script>
     $('form').submit(function () {
         var sousuo=$("#sousuo").val();
+        if(sousuo===""){
+            layer.msg("请输入院校名信息");
+            return false;
+        }
         window.location.href="__PUBLIC__/index.php/index/school/sousuo"+'?like='+sousuo;
         return false;
     });
