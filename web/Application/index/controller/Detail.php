@@ -12,6 +12,7 @@ namespace app\index\controller;
 class Detail extends Base
 {
     public function index(){
-
+        $this->assign("title","院校详情");
+        return $this->fetch();
     }
 }

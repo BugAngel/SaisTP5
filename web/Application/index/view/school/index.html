@@ -1,11 +1,12 @@
 {extend name="common/common" /}
 
 {block name="body"}
+<link rel="stylesheet" type="text/css" href="__CSS__/college.css">
 
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column" style="margin-bottom: 20px">
-            <form id="form" name="form" method="post" action="{:url('index')}" autocomplete="off" role="form" class="form-inline">
+            <form id="college_info" method="post" action="{:url('index')}" autocomplete="off" role="form" class="form-inline">
                 <span style="font-family:宋体;color:#B45F04;font-weight:bold;font-size:10.5000pt;">国家：</span>
                 <div class="form-group" style="width: 150px">
                     <select id="select_country" class="form-control">
@@ -92,27 +93,8 @@
     </div>
 </div>
 
-<style>
-    .yuanxiao-table{ margin-top: 20px; border-top: solid 1px #e5e5e5;}
-    .yuanxiao-table tr td{ border-bottom: solid 1px #e5e5e5; padding:8px 0 28px 0;}
-    .yuanxiao-table tr td .school-img { display: block; margin-top: 20px;}
-    .yuanxiao-table tr td .school-img i{ display: block; width:213px ; height: 54px; border: solid 1px #f1f1f1; float: left; background: #fff;}
-    .yuanxiao-table tr td .school-img i img{ margin: 4px auto; display: block;}
-    .yuanxiao-table tr td .school-img .txt{ float: left; margin-left: 10px;}
-    .yuanxiao-table tr td .school-img .txt b{ font-size: 16px; color: #333; display: block; margin-top: 4px;}
-    .yuanxiao-table tr td .school-img .txt span{ font-family: 'Arial'; margin-top: 12px; display: block;}
-    .yuanxiao-table tr td span{ display: block; color: #666; margin-top: 20px;}
-    .yuanxiao-table tr td span em{ color: #333;}
-    .yuanxiao-table tr td:first-child .school-img{ margin-left: 10px;}
-    span.region{ position: relative; cursor: pointer;}
-    span.region img{ position: absolute; width: 200px; height: 270px; top: -275px; right: 6px; display: none;}
-    span.region:hover img{ display: block;}
-    .yuanxiao-table tr:hover td{ background: #f2f9ff}
-    .yuanxiao-table tr td.no span{ display: none;}
-</style>
-
 <script>
-    $('form').submit(function () {
+    $('#college_info').submit(function () {
         var countryValue=$("#select_country").val();
         var qsLowValue=$("#select_qs_low").val();
         var qsHighValue=$("#select_qs_high").val();
@@ -155,27 +137,27 @@
 
     window.onload=function(){
         GetRequest();
-        if($.cookie('country')!=null){
+        if($.cookie('country')!=null && $.cookie('country')!=='null'){
             $("#select_country").val($.cookie('country'));
         }else{
-            $("#select_country").val("全部");
+            $("#select_country").val("all");
         }
-        if($.cookie('qsLow')!=null){
+        if($.cookie('qsLow')!=null && $.cookie('qsLow')!=='null'){
             $("#select_qs_low").val($.cookie('qsLow'));
         }else{
             $("#select_qs_low").val("1");
         }
-        if($.cookie('qsHigh')!=null){
+        if($.cookie('qsHigh')!=null && $.cookie('qsHigh')!=='null'){
             $("#select_qs_high").val($.cookie('qsHigh'));
         }else{
             $("#select_qs_high").val("140");
         }
-        if($.cookie('majorLow')!=null){
+        if($.cookie('majorLow')!=null && $.cookie('majorLow')!=='null'){
             $("#select_major_low").val($.cookie('majorLow'));
         }else{
             $("#select_major_low").val("1");
         }
-        if($.cookie('majorHigh')!=null){
+        if($.cookie('majorHigh')!=null && $.cookie('majorHigh')!=='null'){
             $("#select_major_high").val($.cookie('majorHigh'));
         }else{
             $("#select_major_high").val("140");

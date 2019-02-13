@@ -4,7 +4,7 @@
             <a href="__PUBLIC__/index.php"><img src="__IMG__/index_logo.png" /></a>
         </div>
         <div class="col-md-6 column">
-            <form class="form-inline" role="form" id="form">
+            <form class="form-inline" role="form" id="search">
                 <div class="form-group pull-right">
                     <input id="sousuo" class="form-control input-lg" placeholder="搜索你感兴趣的学校" style="margin-top: 18px;">
                     <button type="submit" class="btn btn-info btn-lg" style="width: 122px; margin-top: 18px; float:right">
@@ -16,7 +16,7 @@
 </div>
 
 <script>
-    $('form').submit(function () {
+    $('#search').submit(function () {
         var sousuo=$("#sousuo").val();
         if(sousuo===""){
             layer.msg("请输入院校名信息");

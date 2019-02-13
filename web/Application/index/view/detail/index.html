@@ -1,11 +1,86 @@
 {extend name="common/common" /}
 
 {block name="body"}
+<link rel="stylesheet" type="text/css" href="__CSS__/college.css">
 
-<div class="container">
-    <div class="row clearfix">
-
+<div class="container" style="margin-bottom: 20px">
+    <div class="row clearfix bg">
+        <div class="col-md-12 column">
+            <div class="schools-banner">
+                <div class="school-ab">
+                    <i><img width="90px" height="90px" src="__IMG__/colleges/UCD.png"/></i>
+                    <b>牛津大学</b>
+                    <span>University of Oxford</span>
+                    <div class="list">
+                        <em>泰晤士排名：2</em>
+                        <em>卫报排名：2</em>
+                        <em>QS世界排名：5</em>
+                        <em>THE世界排名：1</em>
+                        <em>地区：英格兰</em>
+                        <em>城市：Oxford</em>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#introduce" data-toggle="tab">学校介绍</a></li>
+                <li><a href="#apply" data-toggle="tab">申请信息</a></li>
+                <li><a href="#profession" data-toggle="tab">专业设置</a></li>
+                <li><a href="#fee" data-toggle="tab">费用说明</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="introduce">
+                    <br>
+                    <p style="font-size: 20px;font-family: 楷体">麻省理工学院（Massachusetts Institute of
+                        Technology，缩写MIT）成立于1861年，位于美国马萨诸塞州波士顿附近的剑桥市，其吉祥物为海狸，代表动物界最擅长筑水坝的工程师。</p>
+                    <br>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>总学生数</th>
+                            <th>本科学生数</th>
+                            <th>研究生学生数</th>
+                            <th>师生比例</th>
+                            <th>国际生比例（本科）</th>
+                            <th>国际生比例（研究生）</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="success">
+                            <td>11331</td>
+                            <td>4527</td>
+                            <td>6804</td>
+                            <td>1:8</td>
+                            <td>9.7%</td>
+                            <td>41.9%</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="apply">
+                    <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                        TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                </div>
+                <div class="tab-pane fade" id="profession">
+                    <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                        TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                </div>
+                <div class="tab-pane fade" id="fee">
+                    <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                        TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+</style>
 {/block}
