@@ -33,6 +33,7 @@ class School extends Base
 
         foreach($college as $k => $v){
             $college[$k]['hot_major'] = implode("、",$college[$k]['hot_major']);
+            $college[$k]['href'] = explode('.', $college[$k]['icon'])[0];
         }
         $this->assign('college',$college);
         return $this->fetch();
@@ -48,6 +49,7 @@ class School extends Base
 
         foreach($college as $k => $v){
             $college[$k]['hot_major'] = implode("、",$college[$k]['hot_major']);
+            $college[$k]['href'] = explode('.', $college[$k]['icon'])[0];
         }
         $this->assign('college',$college);
         return $this->fetch();

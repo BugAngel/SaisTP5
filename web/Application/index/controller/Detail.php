@@ -11,7 +11,7 @@ namespace app\index\controller;
 
 class Detail extends Base
 {
-    public function index(){
+    public function index($college=''){
         $this->assign("title","院校详情");
         return $this->fetch();
     }

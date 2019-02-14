@@ -15,7 +15,7 @@ span.region:hover img{ display: block;}
 .yuanxiao-table tr:hover td{ background: #f2f9ff}
 .yuanxiao-table tr td.no span{ display: none;}
 
-.schools-banner{ width: 1200px; height: 400px; center center no-repeat; margin:42px auto 0; position: relative;}
+.schools-banner{ width: 1200px; height: 400px; center: center no-repeat; margin:42px auto 0; position: relative;}
 .school-ab{ position: absolute; width:362px ; height: 380px; background: rgba(255,255,255,0.9); left: 40px;}
 .school-ab i{ display: block; width:100px ; height:100px ; background: #fff; border: solid 1px #e5e5e5; margin:20px auto 0;}
 .school-ab i img{ display: block; margin:8px auto;}
@@ -42,3 +42,9 @@ span.region:hover img{ display: block;}
 .school-gk:last-child .nr{ border-bottom: none;}
 
 .bg {background:url("../images/slide/slide2.png") no-repeat center; background-size:contain;}
+
+.two-column ul { width: 1200px; }
+.two-column li { width: 550px; float: left; display: block; }
+
+.four-column ul { width: 1200px; }
+.four-column li { width: 250px; float: left; display: block; }

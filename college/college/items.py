@@ -27,7 +27,7 @@ class CollegeInfoItem(scrapy.Item):
     hot_major = scrapy.Field()
 
 
-class CollegeIntroduceItem(scrapy.Item):
+class CollegeDetailItem(scrapy.Item):
     college_name = scrapy.Field()
     college_e_name = scrapy.Field()
     country = scrapy.Field()
@@ -48,4 +48,15 @@ class CollegeIntroduceItem(scrapy.Item):
     ea = scrapy.Field()
     rd = scrapy.Field()
     transfer = scrapy.Field()
+    undergraduate_gpa = scrapy.Field()
+    undergraduate_sat = scrapy.Field()
+    undergraduate_language = scrapy.Field()
+    graduate_gpa = scrapy.Field()
+    graduate_sat = scrapy.Field()
+    graduate_language = scrapy.Field()
+    undergraduate_document = scrapy.Field()
+    graduate_document = scrapy.Field()
+    profession = scrapy.Field()
+    tuition_fee = scrapy.Field()
+    living_fee = scrapy.Field()
 

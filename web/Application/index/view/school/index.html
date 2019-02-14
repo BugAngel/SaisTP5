@@ -62,7 +62,7 @@
             {foreach name="college" item="value"}
             <tr>
                 <td width="550">
-                    <a href="{:url('/index/school/detail')}" class="school-img clearfix">
+                    <a href="{:url('index/detail/index')}?{$value.href}" class="school-img clearfix">
                         <i>
                             <img width="45px;" height="45px;" src="__IMG__/colleges/{$value.icon}" />
                         </i>
