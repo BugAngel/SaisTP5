@@ -3,21 +3,25 @@
 {block name="body"}
 <link rel="stylesheet" type="text/css" href="__CSS__/college.css">
 
+<style>
+    .schools-banner{ width: 960px; height: 400px; background: url(__IMG__/banner/{$college_detail.icon})  center center no-repeat; background-size: 100% 100%; margin:0px auto 0; position: relative;}
+</style>
+
 <div class="container" style="margin-bottom: 20px">
     <div id="bg" class="row clearfix bg">
         <div class="col-md-12 column">
             <div class="schools-banner">
                 <div class="school-ab">
-                    <i><img width="90px" height="90px" src="__IMG__/colleges/UCD.png"/></i>
-                    <b>牛津大学</b>
-                    <span>University of Oxford</span>
+                    <i><img width="90px" height="90px" src="__IMG__/colleges/{$college_detail.icon}"/></i>
+                    <b>{$college_detail.college_name}</b>
+                    <span>{$college_detail.college_e_name}</span>
                     <div class="list">
-                        <em>泰晤士排名：2</em>
-                        <em>卫报排名：2</em>
-                        <em>QS世界排名：5</em>
-                        <em>THE世界排名：1</em>
-                        <em>地区：英格兰</em>
-                        <em>城市：Oxford</em>
+                        <em>QS世界排名：{$college_detail.world_rank}</em>
+                        <em>{$college_detail.major_rank_name}：{$college_detail.major_rank}</em>
+                        <em>录取率：{if $college_detail.rate !=='--'} {$college_detail.rate}% {else /}暂无 {/if}</em>
+                        <em>热门专业：{if $college_detail.hot_major !=='--'} {$college_detail.hot_major}等 {else /}暂无 {/if}</em>
+                        <em>国家：{$college_detail.country}</em>
+                        <em>地区：{$college_detail.area}</em>
                     </div>
                 </div>
             </div>
@@ -36,8 +40,7 @@
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="introduce">
-                    <p style="font-size: 20px;font-family: 楷体">麻省理工学院（Massachusetts Institute of
-                        Technology，缩写MIT）成立于1861年，位于美国马萨诸塞州波士顿附近的剑桥市，其吉祥物为海狸，代表动物界最擅长筑水坝的工程师。</p>
+                    <p style="font-size: 20px;font-family: 楷体">{$college_detail.introduce}</p>
                     <br>
                     <table class="table table-bordered table-hover">
                         <thead>
@@ -52,12 +55,12 @@
                         </thead>
                         <tbody>
                         <tr class="success">
-                            <td>11331</td>
-                            <td>4527</td>
-                            <td>6804</td>
-                            <td>1:8</td>
-                            <td>9.7%</td>
-                            <td>41.9%</td>
+                            <td>{$college_detail.sum}</td>
+                            <td>{$college_detail.undergraduate}</td>
+                            <td>{$college_detail.graduate}</td>
+                            <td>1:{$college_detail.student_staff_ratio}</td>
+                            <td>{if $college_detail.undergraduate_international_proportion !=='--'} {$college_detail.undergraduate_international_proportion}% {else /}暂无 {/if}</td>
+                            <td>{if $college_detail.graduate_international_proportion !=='--'} {$college_detail.graduate_international_proportion}% {else /}暂无 {/if}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -69,22 +72,23 @@
                         <tr>
                             <th>平均GPA分数</th>
                             <th>SAT分数</th>
-                            <th>TOEFL录取最低分</th>
+                            <th>{if $college_detail.country ==='美国'} TOEFL录取最低分： {else /}IELTS录取最低分： {/if}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr class="success">
-                            <td>--</td>
-                            <td>--</td>
-                            <td>--</td>
+                            <td>{if $college_detail.undergraduate_gpa !== '--'}{$college_detail.undergraduate_gpa}{else /}暂无{/if}</td>
+                            <td>{if $college_detail.undergraduate_sat !== '--'}{$college_detail.undergraduate_sat}{else /}暂无{/if}</td>
+                            <td>{if $college_detail.undergraduate_language !== '--'}{$college_detail.undergraduate_language}{else /}暂无{/if}</td>
                         </tr>
                         </tbody>
                     </table>
                     <h4 style="font-family: 楷体;color: red" align="left">申请材料</h4>
                     <div class="two-column" style="font-family: 楷体;font-size: 20px ">
                         <ol>
-                            <li>那些花儿</li>
-                            <li>那些花儿</li>
+                            {foreach name="college_detail.undergraduate_document" item="value"}
+                                <li>{$value}</li>
+                            {/foreach}
                         </ol>
                     </div>
                     <br>
@@ -94,22 +98,23 @@
                         <tr>
                             <th>平均GPA分数</th>
                             <th>SAT分数</th>
-                            <th>TOEFL录取最低分</th>
+                            <th>{if $college_detail.country ==='美国'} TOEFL录取最低分： {else /}IELTS录取最低分： {/if}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr class="success">
-                            <td>--</td>
-                            <td>--</td>
-                            <td>--</td>
+                            <td>{if $college_detail.graduate_gpa !== '--'} {$college_detail.graduate_gpa}{else /}暂无{/if}</td>
+                            <td>{if $college_detail.graduate_sat !== '--'} {$college_detail.graduate_sat}{else /}暂无{/if}</td>
+                            <td>{if $college_detail.graduate_language !== '--'}{$college_detail.graduate_language}{else /}暂无{/if}</td>
                         </tr>
                         </tbody>
                     </table>
                     <h4 style="font-family: 楷体;color: red" align="left">申请材料</h4>
                     <div class="two-column" style="font-family: 楷体;font-size: 20px;">
                         <ol>
-                            <li>那些花儿</li>
-                            <li>那些花儿</li>
+                            {foreach name="college_detail.graduate_document" item="value"}
+                                <li>{$value}</li>
+                            {/foreach}
                         </ol>
                     </div>
                     <br>
@@ -124,9 +129,9 @@
                         </thead>
                         <tbody>
                         <tr class="success">
-                            <td>--</td>
-                            <td>----</td>
-                            <td>--</td>
+                            <td>{if $college_detail.ea !== '--'}{$college_detail.ea}{else /}暂无{/if}</td>
+                            <td>{if $college_detail.rd !== '--'}{$college_detail.rd}{else /}暂无{/if}</td>
+                            <td>{if $college_detail.transfer !== '--'}{$college_detail.transfer}{else /}暂无{/if}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -134,11 +139,9 @@
                 <div class="tab-pane fade" id="profession">
                     <div class="four-column" style="font-family: 楷体;font-size: 20px;">
                         <ol>
-                            <li>那些花儿</li>
-                            <li>那些花儿</li>
-                            <li>那些花儿</li>
-                            <li>那些花儿</li>
-                            <li>那些花儿</li>
+                            {foreach name="college_detail.profession" item="value"}
+                                <li>{$value}</li>
+                            {/foreach}
                         </ol>
                     </div>
                 </div>
@@ -152,8 +155,8 @@
                         </thead>
                         <tbody>
                         <tr class="success">
-                            <td>--</td>
-                            <td>----</td>
+                            <td>{if $college_detail.tuition_fee !== '--'}{$college_detail.tuition_fee}{else /}暂无{/if}</td>
+                            <td>{if $college_detail.living_fee !== '--'}{$college_detail.living_fee}{else /}暂无{/if}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -163,13 +166,4 @@
     </div>
 </div>
 
-<script>
-    window.onload=function () {
-        var url = window.location.search; //获取url中"?"符后的字串
-        if (url.indexOf("?") !== -1) {
-            var str = url.substr(1);
-            $("#bg").css("background",url("../images/slide/"+str+".png"));
-        }
-    }
-</script>
 {/block}
