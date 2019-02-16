@@ -69,6 +69,9 @@ class LoginOrRegister extends Controller
             $user->password=$password;
             $user->nickname=$account;
             $user->loginip=$this->request->ip();
+            $user->logintime=date('Y-m-d h:i:s', time());
+            $user->admin=false;
+            $user->comment=true;
             $user->save();
             $res['status'] = 1;
             $res['message'] = '注册成功!';
@@ -99,6 +102,7 @@ class LoginOrRegister extends Controller
             return json($res);
         } else {
             $user->loginip=$this->request->ip();
+            $user->logintime=date('Y-m-d h:i:s', time());
             $user->save();
             session('id', $user->id);     //将id存入session
             session('account', $user->account); //将account存入session
