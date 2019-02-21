@@ -16,7 +16,7 @@ class Base extends Controller
 {
     public function initialize(){
         if(!Session::has('id') || !Session::has('account')){
-            $login_res= '2';
+            $login_res= '0';
         }else{
             $login_res= '1';
         }

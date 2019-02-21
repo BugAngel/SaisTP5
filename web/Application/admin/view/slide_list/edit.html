@@ -8,29 +8,29 @@
                 <h5>幻灯片管理</h5>
             </div>
             <div class="ibox-content">
-                <form id="form" class="form-horizontal m-t " method="post" enctype="multipart/form-data" action="{:url('add')}">
+                <form id="form" class="form-horizontal m-t " method="post" enctype="multipart/form-data" action="{:url('edit')}">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">校名：</label>
                         <div class="col-sm-3">
-                            <input  type="text" id="college_name" class="form-control" name="college_name"  >
+                            <input  type="text" id="college_name" class="form-control" name="college_name" value="{$data.college_name}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">校英文名：</label>
                         <div class="col-sm-3">
-                            <input  type="text" id="college_e_name" class="form-control" name="college_e_name">
+                            <input  type="text" id="college_e_name" class="form-control" name="college_e_name" value="{$data.college_e_name}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">QS排名：</label>
                         <div class="col-sm-3">
-                            <input  type="text" id="qs" class="form-control" name="qs">
+                            <input  type="text" id="qs" class="form-control" name="qs" value="{$data.qs}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">学校简介：</label>
                         <div class="col-sm-3">
-                            <textarea name="introduce" id="introduce" class="form-control" rows="7"></textarea>
+                            <textarea name="introduce" id="introduce" class="form-control" rows="7" >{$data.introduce}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -42,6 +42,7 @@
                     <div class="form-group" id="picture">
                         <label class="col-sm-3 control-label">图片：</label>
                         <div class="col-sm-9">
+                            <img width="160px" height="60px" src="__IMG__/uploads/{$data.picture}">
                             <input type="file" class="file" name="picture"/>
                         </div>
                     </div>

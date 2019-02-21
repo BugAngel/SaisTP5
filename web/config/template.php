@@ -34,10 +34,10 @@ return [
     'taglib_end'   => '}',
     //
     'tpl_replace_string' =>[
-        '__PUBLIC__' => dirname($_SERVER['SCRIPT_NAME']),
-        '__STATIC__' => dirname($_SERVER['SCRIPT_NAME']) . '/static',
-        '__CSS__'    => dirname($_SERVER['SCRIPT_NAME']) . '/static/css',
-        '__JS__'     => dirname($_SERVER['SCRIPT_NAME']) . '/static/js',
-        '__IMG__'    => dirname($_SERVER['SCRIPT_NAME']) . '/static/images',
+        '__PUBLIC__' => '',
+        '__STATIC__' => '/static',
+        '__CSS__'    => '/static/css',
+        '__JS__'     => '/static/js',
+        '__IMG__'    => '/static/images',
         ],
 ];

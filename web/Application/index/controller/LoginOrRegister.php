@@ -72,6 +72,15 @@ class LoginOrRegister extends Controller
             $user->logintime=date('Y-m-d h:i:s', time());
             $user->admin=false;
             $user->comment=true;
+            $arr = [];
+            $len = 150;//长度
+            $arr[1]=33.3;
+            $arr[2]=33.3;
+            $arr[3]=33.3;
+            for($i=4;$i<$len;$i++) {
+                $arr[$i] = 0.0;
+            }
+            $user->recommend=$arr;
             $user->save();
             $res['status'] = 1;
             $res['message'] = '注册成功!';

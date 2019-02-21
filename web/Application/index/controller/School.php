@@ -27,15 +27,14 @@ class School extends Base
             $map[2]=['country','=',"英国"];
         }
 
-        $college = CollegeInfo::all(function($query)use($map){
-            $query->where($map)->order('world_rank', 'asc');
-        });
-
+        $list = db('college_info')->where($map)->order('world_rank', 'asc')->paginate(5);
+        $college=$list->all();
         foreach($college as $k => $v){
             $college[$k]['hot_major'] = implode("、",$college[$k]['hot_major']);
             $college[$k]['href'] = explode('.', $college[$k]['icon'])[0];
         }
         $this->assign('college',$college);
+        $this->assign('list',$list);
         return $this->fetch();
     }
 

@@ -11,7 +11,7 @@ namespace app\index\model;
 
 use think\Model;
 
-class Banner extends Model
+class Slide extends Model
 {
 
 }

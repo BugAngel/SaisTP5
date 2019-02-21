@@ -14,7 +14,7 @@ use think\facade\Session;
 class Base extends Controller
 {
     public function initialize(){
-        if(!Session::has('id') || !Session::has('account')){
+        if(!Session::has('admin_id') || !Session::has('admin_account')){
             $this->redirect("admin/login/login");
         }
     }
