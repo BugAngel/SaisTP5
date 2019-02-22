@@ -36,11 +36,8 @@ class Detail extends Base
             $list = CollegeInfo::all();
             foreach ($list as $item) {
                 $world_rank=$item->world_rank;
-                if(abs($world_rank-$rank)>10 && abs($world_rank-$rank)<20){
-                    $recommend[$world_rank]=$recommend[$world_rank]+20;
-                }else if(abs($world_rank-$rank)>0 && abs($world_rank-$rank)<=10){
-                    $recommend[$world_rank]=$recommend[$world_rank]+40;
-                }
+                $add=100.0/sqrt(2*3.14*10)*exp(-($world_rank-$rank)*($world_rank-$rank)/(2*10));
+                $recommend[$world_rank]=$recommend[$world_rank]+$add;
             }
 
             $sum=array_sum($recommend);

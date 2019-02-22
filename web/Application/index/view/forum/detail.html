@@ -1,0 +1,123 @@
+{extend name="common/common" /}
+
+{block name="body"}
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column" style="margin-bottom: 20px">
+            <h2>
+                {$post.title}
+            </h2>
+            <p>
+                {$post.content}
+            </p>
+            <p>
+                <button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#replyModal" onclick="setPostId({$post.id},{$post.nickname})">回复</button>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row clearfix">
+        <div style='font-family: 微软雅黑;color: #666;font-size: 12px;'>
+            <table width="" border="0" cellpadding="0" cellspacing="0" class="yuanxiao-table">
+                <!-- foreach循环 -->
+                {foreach name="reply" item="value"}
+                <tr>
+                    <td width="250">
+                        <h3>
+                        <a href="#" data-toggle="modal" data-target="#replyModal">{$value.nickname}</a>
+                            回复{$value.parent}：
+                        </h3>
+                    </td>
+                    <td width="950">
+                        <h3>
+                            {$value.content}
+                        </h3>
+                    </td>
+                </tr>
+                {/foreach}
+            </table>
+            {$list|raw}
+        </div>
+    </div>
+</div>
+
+<!-- 回复框 -->
+<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="replyLabel">
+                    我要回复<br>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <input id="parent_user_id" name="parent_user_id" type="hidden" value="{$post.id}">
+                <input id="parent_user_nickname" name="parent_user_nickname"  disabled="disabled" value="回复：{$post.nickname}">
+                <textarea id='content' name='content' class="form-control" rows="7" placeholder="回复内容"></textarea>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button id="reply" type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script>
+    function setPostId(parent_user_id,parent_user_nickname) {
+        $('#parent_user_id').val(parent_user_id)
+        $('#parent_user_nickname').val("回复："+parent_user_nickname)
+    }
+</script>
+
+<script>
+    $(function () {
+        $("#reply").click(function () {
+            var url = window.location.search; //获取url中"?"符后的字串
+            if (url.indexOf("?") !== -1) {
+                var str = url.substr(1);
+                var id = str.split("=")[1];
+            }
+
+            var parent_user_id = $("#parent_user_id").val();
+            var content = $("#content").val();
+
+            if (content==="") {
+                layer.msg('回复内容不能为空！');
+                return false;
+            }
+            //开始发送数据
+            $.ajax
+            ({
+                url: "__PUBLIC__/index.php/index/forum/reply",
+                type: "POST",
+                //传送请求数据
+                data: {parent_user_id: parent_user_id, content: content,id:id},
+                success: function (res) { //登录成功后返回的数据
+                    //根据返回值进行状态显示
+                    if (res === "1") {
+                        $('#replyModal').modal('hide');
+                        layer.msg('回复成功');
+                    } else if (res === "2") {
+                        $('#replyModal').modal('hide');
+                        layer.msg('您尚未登录，请先登录！',{time:1000},function () {
+                            window.location.href = "__PUBLIC__/index.php/index/login_or_register/login";
+                        });
+                    } else {
+                        $('#replyModal').modal('hide');
+                        layer.msg('服务器繁忙，稍后再试！');
+                    }
+                }
+            });
+        })
+    })
+</script>
+{/block}

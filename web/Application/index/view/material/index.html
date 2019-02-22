@@ -1,0 +1,125 @@
+{extend name="common/common" /}
+
+{block name="body"}
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <ul id="myTab" class="nav nav-tabs" style="margin-bottom: 20px">
+                <li class="active"><a href="#password" data-toggle="tab">修改密码</a></li>
+                <li><a href="#data" data-toggle="tab">个人资料</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content" style="margin-bottom: 300px">
+                <div class="tab-pane fade in active" id="password">
+                    <form id="changepassword" name="changepassword" class="form-horizontal m-t " method="post" action="{:url('changePassword')}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">原始密码：</label>
+                            <div class="col-sm-3">
+                                <input  type="text" id="old_password" class="form-control"  name="old_password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">新密码：</label>
+                            <div class="col-sm-3">
+                                <input  type="password" id="new_password"  class="form-control" name="new_password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">确认密码：</label>
+                            <div class="col-sm-3">
+                                <input  type="password" id="new_password2"  class="form-control" name="new_password2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="data">
+                    <form id="setdata" name="setdata" class="form-horizontal m-t " method="post" action="{:url('changeData')}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">昵称：</label>
+                            <div class="col-sm-3">
+                                <input  type="text" id="nickname" class="form-control"  name="nickname" value={$user.nickname}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">性别：</label>
+                            <input type="radio"  value="0"  name="gender"  {if $user.gender=="0" }checked {/if}/>
+                            男
+                            <input type="radio"  value="1"  name="gender"  {if $user.gender=="1" }checked {/if} />
+                            女
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">雅思：</label>
+                            <div class="col-sm-3">
+                                <input  type="text" id="ielts" class="form-control"  name="ielts" value={$user.ielts}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">托福：</label>
+                            <div class="col-sm-3">
+                                <input  type="text" id="toefl" class="form-control"  name="toefl" value={$user.toefl}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">GPA：</label>
+                            <div class="col-sm-3">
+                                <input  type="text" id="gpa" class="form-control"  name="gpa" value={$user.gpa}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">SAT：</label>
+                            <div class="col-sm-3">
+                                <input  type="text" id="sat" class="form-control"  name="sat" value={$user.sat}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#changepassword').submit(function(){
+        var old_password  = $('#old_password').val();
+        var new_password  = $('#new_password').val();
+        var new_password2 = $('#new_password2').val();
+        if(new_password === ''){
+            layer.msg('新密码不能为空');
+            return false;
+        }
+        if(new_password === old_password){
+            layer.msg('新密码与原始密码不能相同');
+            return false;
+        }
+        if(new_password !== new_password2){
+            layer.msg('新密码与确认密码不一致');
+            return false;
+        }
+        var url  = $(this).attr('action');
+        $.ajax({
+            type:"post",
+            url :url,
+            data:{old_password:old_password,new_password:new_password},
+            success: function(res){
+                if(res.status){
+                    layer.msg(res.message,{time:1000},function(){
+                        window.location.href = "{:url('index/index')}";
+                    });
+                }else{
+                    layer.msg(res.message,{time:2000});
+                }
+            }
+        });
+        return false;
+    });
+</script>
+{/block}

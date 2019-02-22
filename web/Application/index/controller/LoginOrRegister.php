@@ -70,8 +70,13 @@ class LoginOrRegister extends Controller
             $user->nickname=$account;
             $user->loginip=$this->request->ip();
             $user->logintime=date('Y-m-d h:i:s', time());
-            $user->admin=false;
-            $user->comment=true;
+            $user->admin='0';
+            $user->comment='1';
+            $user->gender='0';
+            $user->ielts=0;
+            $user->toefl=0;
+            $user->gpa=0;
+            $user->sat=0;
             $arr = [];
             $len = 150;//长度
             $arr[1]=33.3;
@@ -86,6 +91,7 @@ class LoginOrRegister extends Controller
             $res['message'] = '注册成功!';
             session('id', $user->id);     //将id存入session
             session('account', $user->account); //将account存入session
+            session('nickname', $user->nickname); //将nickname存入session
             return json($res);
         }
     }
@@ -115,6 +121,7 @@ class LoginOrRegister extends Controller
             $user->save();
             session('id', $user->id);     //将id存入session
             session('account', $user->account); //将account存入session
+            session('nickname', $user->nickname); //将nickname存入session
             $res['status'] = 1;
             $res['message'] = '登录成功!';
             return json($res);

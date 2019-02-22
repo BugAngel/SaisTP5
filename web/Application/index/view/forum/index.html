@@ -1,0 +1,104 @@
+{extend name="common/common" /}
+
+{block name="body"}
+<link rel="stylesheet" type="text/css" href="__CSS__/college.css">
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column" style="margin-bottom: 20px;">
+            <button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#postModal">发帖</button>
+        </div>
+        <div style='font-family: 微软雅黑;color: #666;font-size: 12px;'>
+            <table width="" border="0" cellpadding="0" cellspacing="0" class="yuanxiao-table">
+                <!-- foreach循环 -->
+                {foreach name="post" item="value"}
+                <tr>
+                    <td width="550">
+                        <a href="{:url('index/forum/detail')}?id={$value.id}">
+                            <h5 style="font-family: 微软雅黑;color: #666;">{$value.title}</h5>
+                        </a>
+                    </td>
+                    <td width="150">
+                    </td>
+                    <td width="195">
+                    </td>
+                    <td width="150">
+                        <h5>{$value.nickname}</h5>
+                    </td>
+                    <td width="150">
+                        <h5>{$value.addtime}</h5>
+                    </td>
+                </tr>
+                {/foreach}
+            </table>
+            {$list|raw}
+        </div>
+    </div>
+</div>
+
+<!-- 发帖框 -->
+<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="postLabel">
+                    我要发帖<br>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <input id='title' name='title' class="form-control" type="text" placeholder="帖子标题">
+                <textarea id='content' name='content' class="form-control" rows="7" placeholder="帖子内容"></textarea>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button id="post" type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script>
+    $(function () {
+        $("#post").click(function () {
+            var title = $("#title").val();
+            var content = $("#content").val();
+            if(title===""){
+                layer.msg('帖子标题不能为空！');
+                return false;
+            }
+            if (content==="") {
+                layer.msg('帖子内容不能为空！');
+                return false;
+            }
+            //开始发送数据
+            $.ajax
+            ({
+                url: "__PUBLIC__/index.php/index/forum/post",
+                type: "POST",
+                //传送请求数据
+                data: {title: title, content: content},
+                success: function (res) { //登录成功后返回的数据
+                    //根据返回值进行状态显示
+                    if (res === "1") {
+                        $('#postModal').modal('hide');
+                        layer.msg('发帖成功');
+                    } else if (res === "2") {
+                        $('#postModal').modal('hide');
+                        layer.msg('您尚未登录，请先登录！',{time:1000},function () {
+                            window.location.href = "__PUBLIC__/index.php/index/login_or_register/login";
+                        });
+                    } else {
+                        $('#postModal').modal('hide');
+                        layer.msg('服务器繁忙，稍后再试！');
+                    }
+                }
+            });
+        })
+    })
+</script>
+{/block}
